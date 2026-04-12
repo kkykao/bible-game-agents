@@ -1,0 +1,19 @@
+{
+  "characters": {
+    "jesus": {
+      "name": "Jesus Christ",
+      "title": "The Risen Lord",
+      "primary_teaching_areas": ["salvation by grace", "repentance", "discipleship"]
+    },
+    "david": {
+      "name": "David",
+      "title": "King and Psalmist",
+      "primary_teaching_areas": ["covenant", "repentance", "prayer"]
+    },
+    "solomon": {
+      "name": "Solomon",
+      "title": "The Wise King",
+      "primary_teaching_areas": ["wisdom", "fear of God", "vanity without God"]
+    }
+  }
+}

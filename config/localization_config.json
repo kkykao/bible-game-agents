@@ -1,0 +1,29 @@
+{
+  "languages": {
+    "en-US": {
+      "name": "English (United States)",
+      "bible_version": "KJV 1611",
+      "locale": "en_US",
+      "encoding": "UTF-8"
+    },
+    "zh-hant": {
+      "name": "Traditional Chinese",
+      "bible_version": "ChiUn (???)",
+      "locale": "zh_TW",
+      "encoding": "UTF-8",
+      "direction": "ltr",
+      "theological_terms": {
+        "trinity": "????",
+        "grace": "??",
+        "salvation": "??",
+        "faith": "??",
+        "repentance": "??",
+        "propitiation": "???",
+        "redemption": "??",
+        "justification": "??"
+      }
+    }
+  },
+  "translation_engine": "claude-api",
+  "preserve_theological_terms": true
+}

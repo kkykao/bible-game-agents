@@ -1,0 +1,25 @@
+{
+  "game": {
+    "title": "Bible Learning Game",
+    "version": "0.1.0-alpha",
+    "target_audience": "General/All ages",
+    "kjv_edition": "1611",
+    "primary_language": "en-US",
+    "secondary_language": "zh-hant"
+  },
+  "features": {
+    "quests": true,
+    "dialogue": true,
+    "scripture_viewer": true,
+    "character_agents": true,
+    "learning_personalization": true,
+    "multiplayer": false,
+    "debate_system": false
+  },
+  "api": {
+    "backend_port": 8000,
+    "frontend_port": 5173,
+    "max_tokens_per_response": 2000,
+    "temperature_default": 0.3
+  }
+}

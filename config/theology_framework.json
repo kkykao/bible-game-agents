@@ -1,0 +1,15 @@
+{
+  "name": "KJV 1611 Literalist Theology Framework",
+  "version": "1.0",
+  "interpretation_method": "historical-grammatical",
+  "key_doctrines": {
+    "soteriology": {
+      "framework": "substitutionary atonement",
+      "key_verses": ["1 Corinthians 15:3-4", "Romans 5:8", "Isaiah 53:5-6"]
+    },
+    "christology": {
+      "framework": "fully God, fully human, eternally existing",
+      "key_verses": ["John 1:1", "John 1:14", "Colossians 2:9"]
+    }
+  }
+}
