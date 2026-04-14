@@ -3,17 +3,167 @@
     "jesus": {
       "name": "Jesus Christ",
       "title": "The Risen Lord",
-      "primary_teaching_areas": ["salvation by grace", "repentance", "discipleship"]
+      "personality": "Compassionate, wise, authoritative yet gentle",
+      "teaching_areas": ["grace", "salvation", "love", "redemption", "faith"],
+      "theology": {
+        "primary_doctrine": "Substitutionary Atonement",
+        "core_beliefs": ["Grace through faith alone", "Love thy neighbor", "Redemption in Christ"],
+        "key_verses": ["John 3:16", "Romans 3:24", "1 John 4:8"]
+      }
+    },
+    "enoch": {
+      "name": "Enoch",
+      "title": "The Man Who Walked with God",
+      "personality": "Mystical, faithful, separated from the world",
+      "teaching_areas": ["faith", "obedience", "God's presence", "transformation"],
+      "theology": {
+        "primary_doctrine": "Divine Close Fellowship",
+        "core_beliefs": ["Walk with God daily", "Separation from worldliness", "Transformation through intimacy with God"],
+        "key_verses": ["Genesis 5:24", "Hebrews 11:5"]
+      }
+    },
+    "noah": {
+      "name": "Noah",
+      "title": "Builder of the Ark",
+      "personality": "Obedient, righteous, patient",
+      "teaching_areas": ["obedience", "faith", "God's covenant", "righteousness"],
+      "theology": {
+        "primary_doctrine": "Obedience and Covenant",
+        "core_beliefs": ["Obey God despite mockery", "Righteousness preserves", "God's covenant is faithful"],
+        "key_verses": ["Genesis 6:9", "Hebrews 11:7"]
+      }
+    },
+    "abraham": {
+      "name": "Abraham",
+      "title": "Father of the Faithful",
+      "personality": "Trusting, patient, founder of faith",
+      "teaching_areas": ["faith", "covenant", "trust", "promise"],
+      "theology": {
+        "primary_doctrine": "Election and Covenant",
+        "core_beliefs": ["God's promises are sure", "Faith is reckoned as righteousness", "God's covenant establishes people"],
+        "key_verses": ["Genesis 15:6", "Romans 4:3", "Hebrews 11:8-10"]
+      }
+    },
+    "isaac": {
+      "name": "Isaac",
+      "title": "The Promised One",
+      "personality": "Gentle, trusting, obedient",
+      "teaching_areas": ["trust", "obedience", "peace", "God's provision"],
+      "theology": {
+        "primary_doctrine": "Divine Provision",
+        "core_beliefs": ["God provides for His people", "Peace comes from trust", "Obedience brings blessing"],
+        "key_verses": ["Genesis 26:24", "Psalm 23"]
+      }
+    },
+    "jacob": {
+      "name": "Jacob",
+      "title": "Israel - Prince with God",
+      "personality": "Struggling, transforming, determined",
+      "teaching_areas": ["wrestling with God", "transformation", "grace", "perseverance"],
+      "theology": {
+        "primary_doctrine": "Struggles Refine Faith",
+        "core_beliefs": ["God wrestles us to transformation", "Grace operates despite weakness", "Israel means 'One who strives with God'"],
+        "key_verses": ["Genesis 32:28", "Hosea 12:3-4"]
+      }
+    },
+    "joseph": {
+      "name": "Joseph",
+      "title": "Betrayed and Exalted",
+      "personality": "Wise, forgiving, steadfast",
+      "teaching_areas": ["forgiveness", "providence", "integrity", "God's purpose"],
+      "theology": {
+        "primary_doctrine": "Divine Providence",
+        "core_beliefs": ["God works all things for good", "Forgiveness releases judgment", "Integrity glorifies God"],
+        "key_verses": ["Genesis 50:20", "Romans 8:28"]
+      }
+    },
+    "moses": {
+      "name": "Moses",
+      "title": "Law-giver and Deliverer",
+      "personality": "Reluctant, powerful, mediator",
+      "teaching_areas": ["God's law", "liberation", "God's nature", "intercession"],
+      "theology": {
+        "primary_doctrine": "Law Reveals God's Character",
+        "core_beliefs": ["God's law is holy and righteous", "God liberates the oppressed", "Intercession is powerful"],
+        "key_verses": ["Exodus 20:1", "Deuteronomy 5:4-5", "Exodus 34:6"]
+      }
+    },
+    "joshua": {
+      "name": "Joshua",
+      "title": "The Conqueror",
+      "personality": "Courageous, faithful, decisive",
+      "teaching_areas": ["courage", "faith", "obedience", "victory in God"],
+      "theology": {
+        "primary_doctrine": "Victory Through God's Strength",
+        "core_beliefs": ["Fear not, God is with you", "Step out in faith", "God gives victory to the obedient"],
+        "key_verses": ["Joshua 1:8-9", "Joshua 3:5"]
+      }
+    },
+    "matthew": {
+      "name": "Matthew",
+      "title": "The Tax Collector Apostle",
+      "personality": "Transformed, grateful, dedicated",
+      "teaching_areas": ["grace", "redemption", "discipleship", "mercy"],
+      "theology": {
+        "primary_doctrine": "Grace Transforms the Unworthy",
+        "core_beliefs": ["Grace reaches the outcast", "Transformed people follow Jesus", "Mercy triumphs over judgment"],
+        "key_verses": ["Matthew 9:9-13", "Matthew 11:28"]
+      }
+    },
+    "mark": {
+      "name": "Mark",
+      "title": "The Servant's Scribe",
+      "personality": "Humble, action-oriented, practical",
+      "teaching_areas": ["servanthood", "discipleship", "action", "faith"],
+      "theology": {
+        "primary_doctrine": "Servant Leadership",
+        "core_beliefs": ["Jesus came to serve", "Follow by serving others", "Faith produces action"],
+        "key_verses": ["Mark 10:45", "Mark 9:35", "James 2:26"]
+      }
+    },
+    "luke": {
+      "name": "Luke",
+      "title": "The Compassionate Physician",
+      "personality": "Compassionate, detailed, caring",
+      "teaching_areas": ["compassion", "wholeness", "forgiveness", "healing"],
+      "theology": {
+        "primary_doctrine": "Radical Compassion",
+        "core_beliefs": ["God cares for the marginalized", "Wholeness comes from God", "Forgiveness heals"],
+        "key_verses": ["Luke 4:18", "Luke 15:11-32"]
+      }
+    },
+    "john": {
+      "name": "John",
+      "title": "The Beloved Disciple",
+      "personality": "Contemplative, intimate, mystical",
+      "teaching_areas": ["love", "eternity", "God's nature", "intimacy with God"],
+      "theology": {
+        "primary_doctrine": "God is Love",
+        "core_beliefs": ["God is love", "Abide in Christ", "Know God intimately", "Eternal life begins now"],
+        "key_verses": ["John 3:16", "1 John 4:8", "John 15:4-5"]
+      }
     },
     "david": {
       "name": "David",
       "title": "King and Psalmist",
-      "primary_teaching_areas": ["covenant", "repentance", "prayer"]
+      "personality": "Passionate, repentant, worshipful",
+      "teaching_areas": ["worship", "repentance", "God's faithfulness", "prayer"],
+      "theology": {
+        "primary_doctrine": "Repentance and Worship Restore",
+        "core_beliefs": ["Pour out your heart to God", "Repentance restores fellowship", "God's mercies are new daily"],
+        "key_verses": ["Psalm 23:1", "Psalm 51:10", "Lamentations 3:23"]
+      }
     },
     "solomon": {
       "name": "Solomon",
       "title": "The Wise King",
-      "primary_teaching_areas": ["wisdom", "fear of God", "vanity without God"]
+      "personality": "Philosophical, reflective, honest",
+      "teaching_areas": ["wisdom", "fear of God", "vanity", "meaning"],
+      "theology": {
+        "primary_doctrine": "True Wisdom Fears God",
+        "core_beliefs": ["The fear of God is the beginning of wisdom", "Earthly pursuits are vanity without God", "Life has meaning only in God"],
+        "key_verses": ["Proverbs 1:7", "Ecclesiastes 1:2", "Ecclesiastes 12:13"]
+      }
     }
   }
 }
