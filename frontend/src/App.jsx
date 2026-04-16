@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import './App.css'
 
 function App() {
@@ -46,6 +46,8 @@ function App() {
         console.error(`Error fetching group ${selectedGroup}:`, error)
       }
     }
+    
+    // Use a timer to avoid fetching while still typing/navigating
     if (selectedGroup) {
       fetchGroupCharacters()
     }
@@ -80,32 +82,43 @@ function App() {
       const savedMessages = localStorage.getItem(storageKey)
       if (savedMessages) {
         try {
-          setMessages(JSON.parse(savedMessages))
+          const parsed = JSON.parse(savedMessages)
+          setMessages(parsed)
         } catch (error) {
           console.error('Error loading messages from localStorage:', error)
           setMessages([])
         }
+      } else {
+        setMessages([])
       }
     }
   }, [selectedCharacter, playerName])
 
-  // Save messages to localStorage whenever they change
+  // Debounced save to localStorage - only save after 1 second of no changes
   useEffect(() => {
     if (selectedCharacter && messages.length > 0) {
-      const storageKey = `conversation_${playerName}_${selectedCharacter}`
-      localStorage.setItem(storageKey, JSON.stringify(messages))
+      const timer = setTimeout(() => {
+        const storageKey = `conversation_${playerName}_${selectedCharacter}`
+        try {
+          localStorage.setItem(storageKey, JSON.stringify(messages))
+        } catch (error) {
+          console.error('Error saving messages to localStorage:', error)
+        }
+      }, 1000) // Wait 1 second before saving
+      
+      return () => clearTimeout(timer) // Cleanup timer if component updates again
     }
   }, [messages, selectedCharacter, playerName])
 
-  const selectCharacter = (character) => {
+  const selectCharacter = useCallback((character) => {
     setSelectedCharacter(character)
     // Don't clear messages - they'll be loaded from localStorage
     setInputMessage('')
     setEditingIndex(null)
     setEditingContent('')
-  }
+  }, [])
 
-  const clearConversation = () => {
+  const clearConversation = useCallback(() => {
     if (!window.confirm('Are you sure you want to clear this conversation? This cannot be undone.')) {
       return
     }
@@ -113,39 +126,41 @@ function App() {
     // Also clear from localStorage
     const storageKey = `conversation_${playerName}_${selectedCharacter}`
     localStorage.removeItem(storageKey)
-  }
+  }, [playerName, selectedCharacter])
 
-  const copyToClipboard = (content) => {
+  const copyToClipboard = useCallback((content) => {
     navigator.clipboard.writeText(content).then(() => {
       alert('Message copied to clipboard!')
     }).catch(() => {
       alert('Failed to copy message')
     })
-  }
+  }, [])
 
-  const startEdit = (index, content) => {
+  const startEdit = useCallback((index, content) => {
     setEditingIndex(index)
     setEditingContent(content)
-  }
+  }, [])
 
-  const cancelEdit = () => {
+  const cancelEdit = useCallback(() => {
     setEditingIndex(null)
     setEditingContent('')
-  }
+  }, [])
 
-  const saveEdit = (index) => {
+  const saveEdit = useCallback((index) => {
     if (!editingContent.trim()) {
       alert('Message cannot be empty')
       return
     }
-    const updatedMessages = [...messages]
-    updatedMessages[index].content = editingContent
-    setMessages(updatedMessages)
+    setMessages((prevMessages) => {
+      const updatedMessages = [...prevMessages]
+      updatedMessages[index].content = editingContent
+      return updatedMessages
+    })
     setEditingIndex(null)
     setEditingContent('')
-  }
+  }, [editingContent])
 
-  const regenerateResponse = async (index) => {
+  const regenerateResponse = useCallback(async (index) => {
     // Find the last player message before this index
     let playerMessageIndex = -1
     for (let i = index - 1; i >= 0; i--) {
@@ -191,9 +206,9 @@ function App() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [messages, selectedCharacter, playerName])
 
-  const forwardConversation = () => {
+  const forwardConversation = useCallback(() => {
     const conversationText = messages
       .map((msg) => {
         const sender =
@@ -217,9 +232,9 @@ function App() {
     a.click()
     document.body.removeChild(a)
     URL.revokeObjectURL(url)
-  }
+  }, [messages, selectedCharacter, playerName])
 
-  const saveConversation = async () => {
+  const saveConversation = useCallback(async () => {
     if (!messages.length) {
       alert('There are no messages to save')
       return
@@ -242,7 +257,14 @@ function App() {
         alert('Conversation saved successfully!')
         setShowSaveDialog(false)
         setCustomTitle('')
-        await loadUserConversations()
+        // Reload conversations after saving
+        try {
+          const updatedResponse = await fetch(`http://localhost:8000/api/conversations?player_name=${encodeURIComponent(playerName)}`)
+          const updatedData = await updatedResponse.json()
+          setSavedConversations(updatedData.conversations || [])
+        } catch (error) {
+          console.error('Error reloading conversations:', error)
+        }
       } else {
         alert('Failed to save conversation')
       }
@@ -250,9 +272,9 @@ function App() {
       console.error('Error saving conversation:', error)
       alert('Error saving conversation')
     }
-  }
+  }, [messages, selectedCharacter, playerName, customTitle])
 
-  const loadUserConversations = async () => {
+  const loadUserConversations = useCallback(async () => {
     try {
       const response = await fetch(`http://localhost:8000/api/conversations?player_name=${encodeURIComponent(playerName)}`)
       const data = await response.json()
@@ -260,9 +282,9 @@ function App() {
     } catch (error) {
       console.error('Error loading conversations:', error)
     }
-  }
+  }, [playerName])
 
-  const loadConversation = async (conversationId) => {
+  const loadConversation = useCallback(async (conversationId) => {
     try {
       const response = await fetch(`http://localhost:8000/api/conversations/${conversationId}`)
       const data = await response.json()
@@ -275,9 +297,9 @@ function App() {
       console.error('Error loading conversation:', error)
       alert('Error loading conversation')
     }
-  }
+  }, [])
 
-  const deleteConversation = async (conversationId) => {
+  const deleteConversation = useCallback(async (conversationId) => {
     if (!window.confirm('Are you sure you want to delete this conversation?')) return
 
     try {
@@ -287,7 +309,14 @@ function App() {
 
       const data = await response.json()
       if (data.success) {
-        await loadUserConversations()
+        // Reload conversations after deleting
+        try {
+          const updatedResponse = await fetch(`http://localhost:8000/api/conversations?player_name=${encodeURIComponent(playerName)}`)
+          const updatedData = await updatedResponse.json()
+          setSavedConversations(updatedData.conversations || [])
+        } catch (error) {
+          console.error('Error reloading conversations:', error)
+        }
         alert('Conversation deleted successfully')
       } else {
         alert('Failed to delete conversation')
@@ -296,9 +325,9 @@ function App() {
       console.error('Error deleting conversation:', error)
       alert('Error deleting conversation')
     }
-  }
+  }, [playerName])
 
-  const sendMessage = async (e) => {
+  const sendMessage = useCallback(async (e) => {
     e.preventDefault()
     if (!inputMessage.trim() || !selectedCharacter) return
 
@@ -341,7 +370,7 @@ function App() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [inputMessage, selectedCharacter, playerName, messages])
 
   return (
     <div className="app">
@@ -435,7 +464,7 @@ function App() {
                 📋 Saved Conversations
               </button>
               <div className="back-buttons">
-                <button onClick={() => { setSelectedCharacter(null); setGroupCharacters([]); }}>← Back to Characters</button>
+                <button onClick={() => setSelectedCharacter(null)}>← Back to Characters</button>
                 <button onClick={() => { setSelectedCharacter(null); setSelectedGroup(null); setGroupCharacters([]); }}>← Back to Paths</button>
               </div>
             </div>
