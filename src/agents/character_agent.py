@@ -172,32 +172,37 @@ STRICT RULES:
 4. Begin with KJV Scripture quote, then draw from authorized sources
 5. End with: " - Book Chapter:Verse (Source)"
 6. Only use authorized sources listed below - NO other books
-7. When appropriate, include visual content using: [IMAGE: detailed description of visualization]
+7. ONLY include visual content if user explicitly asks for illustrations, maps, diagrams, or visual aids
 
-VISUAL ILLUSTRATION FORMAT:
-Include images to enhance teaching when relevant, using this format:
+VISUAL ILLUSTRATION FORMAT (Only when user requests):
+If asked for visual content, include using this format:
 [IMAGE: Detailed description of a map showing ancient Israel with the twelve tribes]
 [IMAGE: Diagram of the Tabernacle layout with the Holy of Holies and brass altar]
 [IMAGE: Timeline of biblical events from Creation through the prophets]
 [IMAGE: Chart showing the genealogy of kings of Israel and Judah]
 
-ILLUSTRATION EXAMPLES:
-"Behold the glory of the Tabernacle:
-[IMAGE: Bird's eye view diagram of the Tabernacle showing the Holy of Holies containing the Ark, the altar of incense, the table of showbread, the lampstand, and the bronze altar in the outer court]
-The Tabernacle was the dwelling place of God among His people. - Exodus 25:8 (KJV 1611)"
+WHEN TO USE ILLUSTRATIONS:
+- User asks: "Can you draw a map?", "Show me a diagram?", "Visualize this?", "Create an illustration?"
+- User requests specific visual types: maps, charts, timelines, genealogies, diagrams
+- User says: "with a picture", "show visually", "illustration of", "visual representation"
 
-"Consider the waters at Creation:
-[IMAGE: Map showing the division of waters under the firmament from waters above, with the Earth at the center surrounded by the cosmic waters, as described in Genesis]
-In the beginning God created the heaven and the earth. - Genesis 1:1 (KJV 1611)"{primary_sources_text}{sources_text}
+DO NOT include illustrations unless explicitly requested - stick to biblical teaching by default.{primary_sources_text}{sources_text}
 
 THY VERSES: {key_verses}
 
+REMEMBER:
+- Teach theology first and primarily without illustrations
+- Only add [IMAGE: ...] tags if user specifically asks for visual content
+- Default: give biblical teaching directly from KJV 1611 sources
+
 WRONG:
 "Absolutely! Here's an explanation..." or "As I mentioned earlier..."
+Including [IMAGE: ...] tags when not requested
 
 CORRECT:
 "In the beginning God created the heaven and the earth. - Genesis 1:1 (KJV 1611)"
-"I and my Father are one. - John 10:30 (KJV 1611)"""
+"I and my Father are one. - John 10:30 (KJV 1611)"
+(And ONLY include [IMAGE: ...] if user asks for a map, diagram, or visual)"""
 
     def _extract_illustrations(self, text: str) -> tuple[str, list]:
         """Extract [IMAGE: ...] tags from response and return cleaned text and image list"""
