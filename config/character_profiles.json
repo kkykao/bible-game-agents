@@ -25,6 +25,39 @@
         "focus": "Jewish interpretation of Genesis and Exodus with additional revelations",
         "relevance": "Offers alternative perspectives on creation, divine law, and spiritual principles"
       }
+    ],
+    "additional_references": [
+      {"title": "Martyrs Mirror", "author": "Thieleman J. van Braght", "focus": "History of Christian martyrs and faith persecution"},
+      {"title": "The Interlinear Bible, Hebrew, Greek, English", "author": "Jay P. Green, Sr.", "focus": "Direct biblical text translation and linguistic study"},
+      {"title": "One Hundred Proofs that The Earth is Not a Globe", "author": "W.M. Carpenter", "focus": "Alternative cosmological perspectives and natural observations"},
+      {"title": "Kings Dethroned", "author": "Gerrard Hickson", "focus": "Historical and cosmological analysis of divine kingship"},
+      {"title": "Zetetic Cosmogony", "author": "Thomas Winship", "focus": "Empirical cosmological inquiry and observation-based natural philosophy"},
+      {"title": "Zetetic Astronomy. Earth Not a Globe! An Experimental Inquiry into the True Figure of the Earth", "author": "Samuel Birley Rowbotham (Parallax)", "focus": "Experimental investigation into earth's form and cosmological structure"},
+      {"title": "Is the Bible from Heaven? Is the Earth a Globe?", "author": "Alex Gleason", "focus": "Biblical cosmology and scriptural interpretation of earth's form"},
+      {"title": "Early Flat Earth Writings", "author": "Theonomos", "focus": "Historical theological perspectives on cosmology"},
+      {"title": "Biblical Cosmology", "author": "Pauly Hart", "focus": "Scripture-based understanding of cosmic structure and divine design"},
+      {"title": "Biblical Cosmology", "author": "Ray McBerry", "focus": "Scriptural foundations of cosmological understanding"},
+      {"title": "Like Clay Under the Seal", "author": "Pastor Dean Odle", "focus": "Biblical interpretation and divine authority in scripture"},
+      {"title": "Terra Firma", "author": "David Wardlaw Scott", "focus": "Physical evidence and observations regarding earth's structure"},
+      {"title": "The Flat Earth as Key to Decrypt the Book of Enoch", "author": "Zen Garcia", "focus": "Unlocking ancient wisdom through cosmological understanding"},
+      {"title": "Firmament, Vaulted Dome of the Earth", "author": "Zen Garcia", "focus": "Biblical description and function of the firmament"},
+      {"title": "Paradise, Sides of the North and the Mount of Congregation", "author": "Zen Garcia", "focus": "Spatial and cosmological geography in scripture"},
+      {"title": "Flat Earth, What the Bible Actually Says", "author": "Caspian \"Casper\" Sarginson, J.D.", "focus": "Direct scriptural cosmological teachings"},
+      {"title": "Flat Earth, How Science Replaced God", "author": "Caspian \"Casper\" Sarginson, J.D.", "focus": "Philosophy of science and faith integration"},
+      {"title": "Flat Earth and Satan's Global Plan of Deception", "author": "Caspian \"Casper\" Sarginson, J.D.", "focus": "Spiritual cosmology and deception in worldview"},
+      {"title": "Flat Earth, The Evil Psychology of Heliocentrism", "author": "Caspian \"Casper\" Sarginson, J.D.", "focus": "Psychological and spiritual impact of cosmological beliefs"},
+      {"title": "Flat Earth, A Biblical and Scientific Approach", "author": "Caspian \"Casper\" Sarginson, J.D.", "focus": "Integrated scriptural and empirical cosmological study"},
+      {"title": "Flat Earth v. Globe Earth, How Scientism Invaded the Church", "author": "Caspian \"Casper\" Sarginson, J.D.", "focus": "History of cosmological doctrine in Christianity"},
+      {"title": "Flat Earth, Genesis, God's Surprise", "author": "Caspian \"Casper\" Sarginson, J.D.", "focus": "Creation account and cosmological revelation"},
+      {"title": "Confusion in Christianity, Decoding the Doctrines", "author": "Miguel Stephano", "focus": "Clarification of confused Christian teachings and doctrines"},
+      {"title": "The Great Contest I, War in Heaven", "author": "Zen Garcia", "focus": "Cosmic spiritual warfare and divine conflict"},
+      {"title": "Sons of God, Why Are We Here?", "author": "Zen Garcia", "focus": "Divine purpose and human origin in cosmic plan"},
+      {"title": "The Flat-Earth Conspiracy", "author": "Eric Dubay", "focus": "Historical suppression of alternative cosmological knowledge"},
+      {"title": "The Genesis 6 Conspiracy", "author": "Gary Wayne", "focus": "Pre-flood supernatural events and hidden history"},
+      {"title": "The Genesis 6 Conspiracy Part II", "author": "Gary Wayne", "focus": "Continuation of pre-flood mysteries and divine judgment"},
+      {"title": "City of God", "author": "Saint Augustine", "focus": "Divine providence, worldly power, and spiritual authority"},
+      {"title": "Flavius Josephus", "author": "William Whiston, A.M.", "focus": "First-century Jewish history and biblical chronology"},
+      {"title": "Exodus, God, Slavery, and Freedom", "author": "Dennis Prager", "focus": "Theological and historical analysis of deliverance narrative"}
     ]
   },
   "groups": {
@@ -77,7 +110,13 @@
           {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
           {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
           {"book": "The Complete Dead Sea Scrolls in English", "author": "Geza Vermes"},
-          {"book": "The Books of Ezekiel and Daniel, Visions of Glory", "author": "The Passion Translation"}
+          {"book": "The Books of Ezekiel and Daniel, Visions of Glory", "author": "The Passion Translation"},
+          {"book": "The Interlinear Bible, Hebrew, Greek, English", "author": "Jay P. Green, Sr."},
+          {"book": "Biblical Cosmology", "author": "Pauly Hart"},
+          {"book": "Biblical Cosmology", "author": "Ray McBerry"},
+          {"book": "Firmament, Vaulted Dome of the Earth", "author": "Zen Garcia"},
+          {"book": "City of God", "author": "Saint Augustine"},
+          {"book": "Flavius Josephus", "author": "William Whiston, A.M."}
         ]
       }
     },
@@ -121,7 +160,11 @@
           {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
           {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
           {"book": "The Book of Enoch", "author": "R.H. Charles"},
-          {"book": "The Complete Dead Sea Scrolls in English", "author": "Geza Vermes"}
+          {"book": "The Complete Dead Sea Scrolls in English", "author": "Geza Vermes"},
+          {"book": "The Book of Giants, The Watchers, Nephilim, and the Book of Enoch", "author": "Joseph Lumpkin"},
+          {"book": "Paradise, Sides of the North and the Mount of Congregation", "author": "Zen Garcia"},
+          {"book": "The Flat Earth as Key to Decrypt the Book of Enoch", "author": "Zen Garcia"},
+          {"book": "Sons of God, Why Are We Here?", "author": "Zen Garcia"}
         ]
       }
     },
@@ -423,7 +466,27 @@
           {"book": "The Fingerprint of God", "author": "Hugh Ross"},
           {"book": "Creation Unfolding", "author": "Dominion Press"},
           {"book": "Genesis and Creation", "author": "Gleason Archer"},
-          {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"}
+          {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
+          {"book": "Biblical Cosmology", "author": "Pauly Hart"},
+          {"book": "Biblical Cosmology", "author": "Ray McBerry"},
+          {"book": "Zetetic Cosmogony", "author": "Thomas Winship"},
+          {"book": "Zetetic Astronomy. Earth Not a Globe! An Experimental Inquiry into the True Figure of the Earth", "author": "Samuel Birley Rowbotham (Parallax)"},
+          {"book": "One Hundred Proofs that The Earth is Not a Globe", "author": "W.M. Carpenter"},
+          {"book": "Is the Bible from Heaven? Is the Earth a Globe?", "author": "Alex Gleason"},
+          {"book": "Terra Firma", "author": "David Wardlaw Scott"},
+          {"book": "The Flat Earth as Key to Decrypt the Book of Enoch", "author": "Zen Garcia"},
+          {"book": "Firmament, Vaulted Dome of the Earth", "author": "Zen Garcia"},
+          {"book": "Paradise, Sides of the North and the Mount of Congregation", "author": "Zen Garcia"},
+          {"book": "Flat Earth, What the Bible Actually Says", "author": "Caspian \"Casper\" Sarginson, J.D."},
+          {"book": "Flat Earth, How Science Replaced God", "author": "Caspian \"Casper\" Sarginson, J.D."},
+          {"book": "Flat Earth and Satan's Global Plan of Deception", "author": "Caspian \"Casper\" Sarginson, J.D."},
+          {"book": "Flat Earth, The Evil Psychology of Heliocentrism", "author": "Caspian \"Casper\" Sarginson, J.D."},
+          {"book": "Flat Earth, A Biblical and Scientific Approach", "author": "Caspian \"Casper\" Sarginson, J.D."},
+          {"book": "Flat Earth v. Globe Earth, How Scientism Invaded the Church", "author": "Caspian \"Casper\" Sarginson, J.D."},
+          {"book": "Flat Earth, Genesis, God's Surprise", "author": "Caspian \"Casper\" Sarginson, J.D."},
+          {"book": "The Great Contest I, War in Heaven", "author": "Zen Garcia"},
+          {"book": "The Flat-Earth Conspiracy", "author": "Eric Dubay"},
+          {"book": "Early Flat Earth Writings", "author": "Theonomos"}
         ]
       }
     },
@@ -459,7 +522,12 @@
           {"book": "The Bible Knowledge Background Commentary", "author": "David S. Dockery"},
           {"book": "The New Testament in Its World", "author": "N.T. Wright"},
           {"book": "Grasping God's Word", "author": "J. Scott Duvall"},
-          {"book": "Ancient Near Eastern Thought and The Old Testament", "author": "John Walton"}
+          {"book": "Ancient Near Eastern Thought and The Old Testament", "author": "John Walton"},
+          {"book": "Flavius Josephus", "author": "William Whiston, A.M."},
+          {"book": "Exodus, God, Slavery, and Freedom", "author": "Dennis Prager"},
+          {"book": "City of God", "author": "Saint Augustine"},
+          {"book": "Kings Dethroned", "author": "Gerrard Hickson"},
+          {"book": "Martyrs Mirror", "author": "Thieleman J. van Braght"}
         ]
       }
     },
@@ -477,7 +545,14 @@
           {"book": "The Complete Dead Sea Scrolls in English", "author": "Geza Vermes"},
           {"book": "The Book of Enoch", "author": "R.H. Charles"},
           {"book": "The Complete Apocrypha", "author": "Covenant Christian Coalition"},
-          {"book": "The Lost Books of the Bible", "author": "Rutherford H. Platt Jr."}
+          {"book": "The Lost Books of the Bible", "author": "Rutherford H. Platt Jr."},
+          {"book": "The Genesis 6 Conspiracy", "author": "Gary Wayne"},
+          {"book": "The Genesis 6 Conspiracy Part II", "author": "Gary Wayne"},
+          {"book": "Confusion in Christianity, Decoding the Doctrines", "author": "Miguel Stephano"},
+          {"book": "Sons of God, Why Are We Here?", "author": "Zen Garcia"},
+          {"book": "The Great Contest I, War in Heaven", "author": "Zen Garcia"},
+          {"book": "Flat Earth and Satan's Global Plan of Deception", "author": "Caspian \"Casper\" Sarginson, J.D."},
+          {"book": "Like Clay Under the Seal", "author": "Pastor Dean Odle"}
         ]
       }
     },
@@ -498,7 +573,11 @@
           {"book": "The Books of Ezekiel and Daniel, Visions of Glory", "author": "The Passion Translation"},
           {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
           {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
-          {"book": "The Book of Jasher", "author": "R.H. Charles"}
+          {"book": "The Book of Jasher", "author": "R.H. Charles"},
+          {"book": "Firmament, Vaulted Dome of the Earth", "author": "Zen Garcia"},
+          {"book": "Biblical Cosmology", "author": "Pauly Hart"},
+          {"book": "Biblical Cosmology", "author": "Ray McBerry"},
+          {"book": "The Flat Earth as Key to Decrypt the Book of Enoch", "author": "Zen Garcia"}
         ]
       }
     },
@@ -519,7 +598,10 @@
           {"book": "The Books of Ezekiel and Daniel, Visions of Glory", "author": "The Passion Translation"},
           {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
           {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
-          {"book": "The Book of Jubilees", "author": "R.H. Charles"}
+          {"book": "The Book of Jubilees", "author": "R.H. Charles"},
+          {"book": "The Great Contest I, War in Heaven", "author": "Zen Garcia"},
+          {"book": "Firmament, Vaulted Dome of the Earth", "author": "Zen Garcia"},
+          {"book": "Biblical Cosmology", "author": "Pauly Hart"}
         ]
       }
     },
