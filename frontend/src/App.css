@@ -201,7 +201,9 @@ body {
   transition: all 0.4s ease;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   gap: 0.8rem;
   box-shadow: inset 0 1px 0 rgba(212, 165, 116, 0.2), 0 8px 16px rgba(0, 0, 0, 0.3);
   position: relative;
