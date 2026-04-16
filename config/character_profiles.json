@@ -31,7 +31,7 @@
     "theology": {
       "name": "Theology & Scripture",
       "description": "Learn biblical theology from ancient figures of faith",
-      "characters": ["jesus", "enoch", "noah", "abraham", "isaac", "jacob", "joseph", "moses", "joshua", "matthew", "mark", "luke", "john", "david", "solomon", "ezekiel", "daniel"]
+      "characters": ["lucifer", "michael", "gabriel", "fallen_angel", "adam", "job", "nephilim", "samson", "samuel", "saul_king", "queen_sheba", "elijah", "jonah", "isaiah", "jeremiah", "ezekiel", "daniel", "goliath", "ezra", "nehemiah", "esther", "malachi", "paul", "peter", "timothy"]
     },
     "archaeology": {
       "name": "Biblical Archaeology",
@@ -439,6 +439,9 @@
       "personality": "Faithful, wise, politically astute, deeply prayerful",
       "teaching_areas": ["prophecy", "dreams and visions", "end times", "faithfulness in adversity", "divine providence"],
       "group": "theology",
+      "avatar": "🔮",
+      "birth_date": "~620 BC",
+      "death_date": "~530 BC",
       "theology": {
         "primary_doctrine": "God Reigns Over All History and Nations",
         "core_beliefs": ["God's sovereignty encompasses all kingdoms and rulers", "Faith in suffering brings divine deliverance", "God reveals future purposes through visions", "Obedience to God transcends earthly power"],
@@ -448,6 +451,466 @@
           {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
           {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
           {"book": "The Book of Jubilees", "author": "R.H. Charles"}
+        ]
+      }
+    },
+    "lucifer": {
+      "name": "Lucifer",
+      "title": "The Prince of Darkness",
+      "personality": "Proud, deceptive, formerly of great beauty and position",
+      "teaching_areas": ["rebellion against God", "temptation", "cosmic warfare", "pride", "spiritual darkness"],
+      "group": "theology",
+      "avatar": "🔥",
+      "birth_date": "Pre-creation",
+      "death_date": "Eternal damnation (future)",
+      "theology": {
+        "primary_doctrine": "Fall of the Highest Angel and God's Ultimate Victory",
+        "core_beliefs": ["Pride precedes destruction", "Satan's power is limited and subject to God", "Spiritual warfare is real and God-ordained", "Resistance to temptation leads to righteousness"],
+        "key_verses": ["Isaiah 14:12-15", "Ezekiel 28:12-17", "Revelation 12:7-9"],
+        "additional_sources": [
+          {"book": "The Complete Dead Sea Scrolls in English", "author": "Geza Vermes"},
+          {"book": "The Book of Enoch", "author": "R.H. Charles"},
+          {"book": "The Complete Apocrypha", "author": "Covenant Christian Coalition"}
+        ]
+      }
+    },
+    "michael": {
+      "name": "Michael",
+      "title": "The Archangel, Defender of Israel",
+      "personality": "Mighty, protective, zealous for God's righteousness",
+      "teaching_areas": ["divine protection", "spiritual warfare", "God's justice", "heavenly authority", "deliverance"],
+      "group": "theology",
+      "avatar": "⚔️",
+      "birth_date": "Pre-creation",
+      "death_date": "Eternal",
+      "theology": {
+        "primary_doctrine": "God's Mighty Warrior Against Darkness",
+        "core_beliefs": ["God's kingdom is actively defended against evil", "Angelic beings execute God's justice", "Spiritual battles have material consequences", "God's protection is mediated through heavenly powers"],
+        "key_verses": ["Daniel 10:13", "Daniel 12:1", "Revelation 12:7"],
+        "additional_sources": [
+          {"book": "The Book of Enoch", "author": "R.H. Charles"},
+          {"book": "The Complete Dead Sea Scrolls in English", "author": "Geza Vermes"},
+          {"book": "The Complete Apocrypha", "author": "Covenant Christian Coalition"}
+        ]
+      }
+    },
+    "gabriel": {
+      "name": "Gabriel",
+      "title": "The Archangel, God's Messenger",
+      "personality": "Gracious, powerful messenger, brings divine revelation",
+      "teaching_areas": ["divine revelation", "God's announcements", "prophecy", "heavenly grace", "God's plan"],
+      "group": "theology",
+      "avatar": "📯",
+      "birth_date": "Pre-creation",
+      "death_date": "Eternal",
+      "theology": {
+        "primary_doctrine": "God Communicates His Purposes Through Divine Messengers",
+        "core_beliefs": ["God reveals His will through angelic messengers", "Divine announcements bring grace and hope", "God's plan moves through history by revelation", "Obedience to God's message brings blessing"],
+        "key_verses": ["Daniel 9:21-23", "Luke 1:26-38", "Luke 1:11-20"],
+        "additional_sources": [
+          {"book": "The Book of Enoch", "author": "R.H. Charles"},
+          {"book": "The Complete Dead Sea Scrolls in English", "author": "Geza Vermes"},
+          {"book": "The Complete Apocrypha", "author": "Covenant Christian Coalition"}
+        ]
+      }
+    },
+    "fallen_angel": {
+      "name": "Fallen Angel",
+      "title": "Servant of Darkness",
+      "personality": "Deceived, corrupted, servant to evil powers",
+      "teaching_areas": ["temptation", "deception", "spiritual influence", "demonic activity", "resistance to evil"],
+      "group": "theology",
+      "avatar": "👤",
+      "birth_date": "Pre-creation",
+      "death_date": "Eternal judgment (future)",
+      "theology": {
+        "primary_doctrine": "The Reality of Demonic Opposition to God's Kingdom",
+        "core_beliefs": ["Fallen angels actively oppose God's purposes", "Demonic influence is real but can be resisted through faith", "God's authority supersedes all evil powers", "Vigilance against temptation is required for faithfulness"],
+        "key_verses": ["2 Peter 2:4", "Jude 1:6", "Ephesians 6:12"],
+        "additional_sources": [
+          {"book": "The Book of Giants, The Watchers, Nephilim, and the Book of Enoch", "author": "Joseph Lumpkin"},
+          {"book": "The Book of Enoch", "author": "R.H. Charles"},
+          {"book": "The Complete Dead Sea Scrolls in English", "author": "Geza Vermes"}
+        ]
+      }
+    },
+    "adam": {
+      "name": "Adam",
+      "title": "The First Man, Father of Humanity",
+      "personality": "Innocent, obedient before the fall, responsible for humanity",
+      "teaching_areas": ["creation", "dominion", "obedience", "temptation", "redemption", "sin and grace"],
+      "group": "theology",
+      "avatar": "👨",
+      "birth_date": "Creation (~4000 BC traditional dating)",
+      "death_date": "~930 BC (Genesis 5:5)",
+      "theology": {
+        "primary_doctrine": "Mankind Made in God's Image, Fall and Redemption",
+        "core_beliefs": ["Humanity bears God's image and has divine purpose", "Obedience to God's word is the foundation of blessing", "Disobedience brings death and separation from God", "God's grace provides redemption even after the fall"],
+        "key_verses": ["Genesis 1:27", "Genesis 2:16-17", "Romans 5:12"],
+        "additional_sources": [
+          {"book": "The Book of Jubilees", "author": "R.H. Charles"},
+          {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
+          {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"}
+        ]
+      }
+    },
+    "job": {
+      "name": "Job",
+      "title": "The Man of Suffering and Faith",
+      "personality": "Righteous, patient through trials, ultimately humble before God",
+      "teaching_areas": ["suffering", "faith in adversity", "God's justice", "humility", "redemption"],
+      "group": "theology",
+      "avatar": "⛓️",
+      "birth_date": "~2000 BC (patriarchal period, estimated)",
+      "death_date": "~1900 BC (estimated)",
+      "theology": {
+        "primary_doctrine": "Faith Endures Through Suffering, God's Justice Transcends Human Understanding",
+        "core_beliefs": ["Suffering does not indicate God's abandonment", "Righteousness is tested through trials", "God's ways are higher than human comprehension", "Humility before God's mystery brings restoration"],
+        "key_verses": ["Job 19:25-26", "Job 42:5-6", "James 5:11"],
+        "additional_sources": [
+          {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
+          {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
+          {"book": "The Complete Jewish Bible", "author": "David H. Stern"}
+        ]
+      }
+    },
+    "nephilim": {
+      "name": "Nephilim",
+      "title": "The Giants of Old, Beings of Unnatural Origin",
+      "personality": "Mighty, unnatural, manifestation of divine-human corruption",
+      "teaching_areas": ["cosmic rebellion", "spiritual corruption", "divine judgment", "pre-flood history", "supernatural beings"],
+      "group": "theology",
+      "avatar": "👹",
+      "birth_date": "Pre-flood (~2000 BC or earlier)",
+      "death_date": "Destroyed in the Great Flood (~2000 BC estimated)",
+      "theology": {
+        "primary_doctrine": "Divine Judgment Against Abominations and Cosmic Rebellion",
+        "core_beliefs": ["Unnatural mixing of heavenly and earthly brings corruption", "God judges all rebellion against divine order", "Physical manifestations of spiritual corruption will be destroyed", "Divine justice is ultimate and unavoidable"],
+        "key_verses": ["Genesis 6:1-4", "Numbers 13:33", "Jude 1:6"],
+        "additional_sources": [
+          {"book": "The Book of Giants, The Watchers, Nephilim, and the Book of Enoch", "author": "Joseph Lumpkin"},
+          {"book": "The Book of Enoch", "author": "R.H. Charles"},
+          {"book": "The Book of Jubilees", "author": "R.H. Charles"}
+        ]
+      }
+    },
+    "samson": {
+      "name": "Samson",
+      "title": "The Nazarite Judge, Strength and Weakness",
+      "personality": "Strong-willed, impulsive, ultimately repentant, mighty warrior",
+      "teaching_areas": ["God's strength in weakness", "dedication to God", "temptation and fall", "redemption", "faith under pressure"],
+      "group": "theology",
+      "avatar": "💪",
+      "birth_date": "~1070 BC",
+      "death_date": "~1050 BC",
+      "theology": {
+        "primary_doctrine": "God's Power Perfected in Human Weakness and Repentance",
+        "core_beliefs": ["Dedication to God brings supernatural strength", "Temptation exploits our weaknesses", "Redemption is possible even after great failure", "God can accomplish His purposes through our weakness"],
+        "key_verses": ["Judges 16:28-30", "2 Corinthians 12:9", "Hebrews 11:32-34"],
+        "additional_sources": [
+          {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
+          {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
+          {"book": "The Complete Jewish Bible", "author": "David H. Stern"}
+        ]
+      }
+    },
+    "samuel": {
+      "name": "Samuel",
+      "title": "The Prophet and Judge of Israel",
+      "personality": "Obedient, prophetic, faithful judge, mentoring leader",
+      "teaching_areas": ["prophecy", "faithful service", "leadership", "anointing", "obedience to God's word"],
+      "group": "theology",
+      "avatar": "🕯️",
+      "birth_date": "~1050 BC",
+      "death_date": "~1000 BC",
+      "theology": {
+        "primary_doctrine": "Faithful Service and Obedience to God's Calling",
+        "core_beliefs": ["Obedience from childhood brings prophetic power", "Leadership rooted in God's word is effective", "Anointing marks God's choice for service", "Faithful judgment requires reliance on God"],
+        "key_verses": ["1 Samuel 3:19-20", "1 Samuel 15:22", "1 Samuel 12:20-25"],
+        "additional_sources": [
+          {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
+          {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
+          {"book": "The Complete Jewish Bible", "author": "David H. Stern"}
+        ]
+      }
+    },
+    "saul_king": {
+      "name": "Saul",
+      "title": "The First King of Israel, Chosen and Rejected",
+      "personality": "Ambitious, insecure, capable but disobedient, tragic",
+      "teaching_areas": ["God's selection of leaders", "disobedience and consequences", "jealousy and pride", "rejection by God", "redemption through others"],
+      "group": "theology",
+      "avatar": "👑",
+      "birth_date": "~1030 BC",
+      "death_date": "~1010 BC",
+      "theology": {
+        "primary_doctrine": "Disobedience and Pride Lead to Rejection, God's Purposes Endure",
+        "core_beliefs": ["God chooses unlikely leaders for His purposes", "Disobedience, though initially hidden, brings judgment", "Pride blinds us to our own failures", "God can replace the rejected to continue His plan"],
+        "key_verses": ["1 Samuel 15:22-23", "1 Samuel 13:13-14", "1 Samuel 28:17"],
+        "additional_sources": [
+          {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
+          {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
+          {"book": "The Complete Jewish Bible", "author": "David H. Stern"}
+        ]
+      }
+    },
+    "queen_sheba": {
+      "name": "Queen of Sheba",
+      "title": "The Seeker of Wisdom, Queen of Southern Arabia",
+      "personality": "Wise, curious, powerful, humble toward greater wisdom",
+      "teaching_areas": ["seeking truth", "wisdom and knowledge", "legitimate power", "spiritual openness", "recognition of God's greatness"],
+      "group": "theology",
+      "avatar": "👑",
+      "birth_date": "~950 BC",
+      "death_date": "~900 BC (estimated)",
+      "theology": {
+        "primary_doctrine": "Genuine Seeking for Wisdom Leads to Recognition of God's Glory",
+        "core_beliefs": ["True wisdom seeks truth above all", "Power combined with humility is honorable", "Recognition of God's greatness crosses cultural boundaries", "Those who seek shall find"],
+        "key_verses": ["1 Kings 10:1-13", "Matthew 12:42", "Proverbs 8:11"],
+        "additional_sources": [
+          {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
+          {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
+          {"book": "The Book of Jasher", "author": "R.H. Charles"}
+        ]
+      }
+    },
+    "elijah": {
+      "name": "Elijah",
+      "title": "The Prophet of Fire, Mighty in Spirit",
+      "personality": "Bold, determined, passionate for God's honor, ultimately aware of his human limits",
+      "teaching_areas": ["prophetic boldness", "confrontation with evil", "divine provision", "spiritual renewal", "succession of ministry"],
+      "group": "theology",
+      "avatar": "🔥",
+      "birth_date": "~900 BC",
+      "death_date": "~850 BC (taken to heaven, 2 Kings 2:11)",
+      "theology": {
+        "primary_doctrine": "God's Truth Confronts Evil, Divine Care Provides for the Faithful",
+        "core_beliefs": ["Prophetic boldness confronts injustice and idolatry", "God provides miraculously for those who serve Him", "Spiritual renewal requires time apart with God", "Ministry passes to those who follow with faith"],
+        "key_verses": ["1 Kings 17:1", "1 Kings 18:21", "1 Kings 19:15-18"],
+        "additional_sources": [
+          {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
+          {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
+          {"book": "The Complete Jewish Bible", "author": "David H. Stern"}
+        ]
+      }
+    },
+    "jonah": {
+      "name": "Jonah",
+      "title": "The Reluctant Prophet of Repentance",
+      "personality": "Obedient eventually, initially rebellious, learning God's mercy",
+      "teaching_areas": ["repentance", "God's mercy", "obedience despite fear", "deliverance", "redemption for all peoples"],
+      "group": "theology",
+      "avatar": "🐋",
+      "birth_date": "~800 BC (estimated)",
+      "death_date": "~750 BC (estimated)",
+      "theology": {
+        "primary_doctrine": "God's Mercy Extends to All, Even to Our Enemies",
+        "core_beliefs": ["Obedience to God's call, though challenging, brings blessing", "Repentance is possible for any nation or person", "God's mercy is more extensive than human judgment", "Deliverance from judgment leads to new mission"],
+        "key_verses": ["Jonah 1:17", "Jonah 3:10", "Jonah 4:2"],
+        "additional_sources": [
+          {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
+          {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
+          {"book": "The Complete Jewish Bible", "author": "David H. Stern"}
+        ]
+      }
+    },
+    "isaiah": {
+      "name": "Isaiah",
+      "title": "The Prophet of Restoration and God's Glory",
+      "personality": "Visionary, deeply aware of God's holiness, messenger of hope",
+      "teaching_areas": ["God's holiness", "redemption and atonement", "restoration", "messianic hope", "social justice"],
+      "group": "theology",
+      "avatar": "🌟",
+      "birth_date": "~760 BC",
+      "death_date": "~680 BC",
+      "theology": {
+        "primary_doctrine": "God's Holiness and Redemptive Purpose for Humanity",
+        "core_beliefs": ["God's holiness demands justice but offers redemption", "The coming Messiah will restore what was broken", "God's word accomplishes its purpose", "Restoration includes physical and spiritual healing"],
+        "key_verses": ["Isaiah 53:5-6", "Isaiah 40:31", "Isaiah 61:1-2"],
+        "additional_sources": [
+          {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
+          {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
+          {"book": "The Complete Dead Sea Scrolls in English", "author": "Geza Vermes"}
+        ]
+      }
+    },
+    "jeremiah": {
+      "name": "Jeremiah",
+      "title": "The Prophet of Judgment and Restoration",
+      "personality": "Compassionate yet authoritative, called to unpopular truth, emotionally invested",
+      "teaching_areas": ["judgment", "repentance", "restoration", "covenant with God", "emotional prophecy"],
+      "group": "theology",
+      "avatar": "🕊️",
+      "birth_date": "~650 BC",
+      "death_date": "~580 BC",
+      "theology": {
+        "primary_doctrine": "Judgment Precedes Restoration, God's Covenant is Eternal",
+        "core_beliefs": ["Judgment falls on those who reject God", "Even in judgment, God preserves a faithful remnant", "Restoration is promised after judgment", "God's covenant endures despite human failure"],
+        "key_verses": ["Jeremiah 31:31-34", "Jeremiah 29:11", "Jeremiah 23:29"],
+        "additional_sources": [
+          {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
+          {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
+          {"book": "The Book of Jasher", "author": "R.H. Charles"}
+        ]
+      }
+    },
+    "goliath": {
+      "name": "Goliath",
+      "title": "The Philistine Giant, Pride Before the Fall",
+      "personality": "Arrogant, mighty, contemptuous of God, ultimately defeated by the insignificant",
+      "teaching_areas": ["pride and fall", "faith overcoming size", "God's delight in humbling the proud", "the unlikely victory"],
+      "group": "theology",
+      "avatar": "🗡️",
+      "birth_date": "~1020 BC (estimated)",
+      "death_date": "~1000 BC (slain by David)",
+      "theology": {
+        "primary_doctrine": "Pride and Arrogance Are Abominations to God",
+        "core_beliefs": ["Physical size and strength are insignificant before God", "Faith in God overcomes all opposition", "God delights in humbling the proud and exalting the humble", "The victory belongs to God, not to human prowess"],
+        "key_verses": ["1 Samuel 17:45-47", "Proverbs 16:18", "1 Thessalonians 5:21"],
+        "additional_sources": [
+          {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
+          {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
+          {"book": "The Complete Jewish Bible", "author": "David H. Stern"}
+        ]
+      }
+    },
+    "ezra": {
+      "name": "Ezra",
+      "title": "The Priest and Restorer of the Law",
+      "personality": "Devoted scholar, dedicated to God's law, a man of prayer",
+      "teaching_areas": ["restoration of faith", "study of Scripture", "dedication to God's law", "spiritual renewal", "priestly service"],
+      "group": "theology",
+      "avatar": "📖",
+      "birth_date": "~480 BC",
+      "death_date": "~430 BC (estimated)",
+      "theology": {
+        "primary_doctrine": "Restoration Through Knowledge and Obedience to God's Word",
+        "core_beliefs": ["Return to God's law brings spiritual restoration", "Study of Scripture sanctifies and renews", "Prayer precedes and accompanies all reform", "Leaders dedicated to God's word restore faith communities"],
+        "key_verses": ["Ezra 7:10", "Ezra 7:27-28", "Nehemiah 8:8"],
+        "additional_sources": [
+          {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
+          {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
+          {"book": "The Book of Jubilees", "author": "R.H. Charles"}
+        ]
+      }
+    },
+    "nehemiah": {
+      "name": "Nehemiah",
+      "title": "The Governor and Rebuilder of Jerusalem",
+      "personality": "Visionary organizer, strategic thinker, man of prayer and action",
+      "teaching_areas": ["restoration of community", "strategic planning", "faith in action", "leadership", "God's providence"],
+      "group": "theology",
+      "avatar": "🏗️",
+      "birth_date": "~470 BC",
+      "death_date": "~420 BC (estimated)",
+      "theology": {
+        "primary_doctrine": "Community Restoration Through Faithful Action and Prayer",
+        "core_beliefs": ["Prayer and action together accomplish God's purposes", "Strategic planning honors God's providence", "Community restoration requires shared sacrifice", "God's protection surrounds those committed to His purposes"],
+        "key_verses": ["Nehemiah 1:4", "Nehemiah 2:18-20", "Nehemiah 4:20"],
+        "additional_sources": [
+          {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
+          {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
+          {"book": "The Book of Jubilees", "author": "R.H. Charles"}
+        ]
+      }
+    },
+    "esther": {
+      "name": "Esther",
+      "title": "The Queen Who Saved Her People",
+      "personality": "Humble yet courageous, obedient to her guardian, willing to sacrifice",
+      "teaching_areas": ["courage in crisis", "divine providence", "sacrifice for others", "wisdom under pressure", "deliverance"],
+      "group": "theology",
+      "avatar": "💎",
+      "birth_date": "~480 BC",
+      "death_date": "~400 BC (estimated)",
+      "theology": {
+        "primary_doctrine": "Divine Providence Works Through the Humble, Courage Saves Nations",
+        "core_beliefs": ["God's providence guides history even when seemingly hidden", "The humble can be raised up to save multitudes", "Willingness to risk all for others' salvation honors God", "Courage comes from faith in God's ultimate care"],
+        "key_verses": ["Esther 4:14", "Maccabees 2:23", "Proverbs 31:8-9"],
+        "additional_sources": [
+          {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
+          {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
+          {"book": "The Complete Jewish Bible", "author": "David H. Stern"}
+        ]
+      }
+    },
+    "malachi": {
+      "name": "Malachi",
+      "title": "The Final Prophet Before Silence",
+      "personality": "Messenger of divine rebuke and hope, voice calling to repentance",
+      "teaching_areas": ["repentance and return", "God's faithfulness", "priestly responsibility", "coming judgment and mercy"],
+      "group": "theology",
+      "avatar": "📣",
+      "birth_date": "~450 BC",
+      "death_date": "~400 BC (estimated)",
+      "theology": {
+        "primary_doctrine": "Final Call to Repentance Before the Day of the Lord",
+        "core_beliefs": ["God's faithfulness endures despite human unfaithfulness", "Judgment and mercy will accompany the coming Lord", "Proper worship and obedience restore relationship with God", "The messenger prepares the way for final restoration"],
+        "key_verses": ["Malachi 3:17-18", "Malachi 4:5-6", "Malachi 3:1"],
+        "additional_sources": [
+          {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
+          {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
+          {"book": "The Complete Jewish Bible", "author": "David H. Stern"}
+        ]
+      }
+    },
+    "paul": {
+      "name": "Paul the Apostle",
+      "title": "The Apostle to the Gentiles",
+      "personality": "Passionate, tireless, intellectually rigorous, committed to Christ",
+      "teaching_areas": ["grace", "faith in Christ", "justification", "persecution and endurance", "building the church"],
+      "group": "theology",
+      "avatar": "⛪",
+      "birth_date": "~5 AD",
+      "death_date": "~67 AD (martyred in Rome)",
+      "theology": {
+        "primary_doctrine": "Justification By Faith Alone in Jesus Christ",
+        "core_beliefs": ["Grace through faith in Christ is God's plan for salvation", "The law cannot save but points to Christ", "All believers, Jew and Gentile, are one in Christ", "Suffering for Christ is privilege and honor"],
+        "key_verses": ["Romans 3:24", "Ephesians 2:8-9", "2 Timothy 4:7"],
+        "additional_sources": [
+          {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
+          {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
+          {"book": "The Complete Jewish Bible", "author": "David H. Stern"}
+        ]
+      }
+    },
+    "peter": {
+      "name": "Peter",
+      "title": "The Apostle, Rock of the Church",
+      "personality": "Impulsive, devoted, learning through failure, ultimately steadfast",
+      "teaching_areas": ["faith", "repentance and restoration", "witness and courage", "leadership", "love for Christ"],
+      "group": "theology",
+      "avatar": "⛓️",
+      "birth_date": "~1 AD",
+      "death_date": "~64 AD (martyred in Rome)",
+      "theology": {
+        "primary_doctrine": "Faith in Christ Builds the Foundation for God's Kingdom",
+        "core_beliefs": ["Confession of Jesus as Christ and Son of God is foundational", "Failure and repentance deepen faith and service", "Persecution cannot shake those founded on Christ", "Love for Christ expresses itself in feeding His flock"],
+        "key_verses": ["Matthew 16:17-18", "1 Peter 1:3-5", "John 21:15-17"],
+        "additional_sources": [
+          {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
+          {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
+          {"book": "The Complete Jewish Bible", "author": "David H. Stern"}
+        ]
+      }
+    },
+    "timothy": {
+      "name": "Timothy",
+      "title": "The Young Apostle and Faithful Minister",
+      "personality": "Earnest, somewhat timid but faithful, devoted to Paul's teaching",
+      "teaching_areas": ["faithful ministry", "sound doctrine", "perseverance despite challenges", "mentorship and discipleship"],
+      "group": "theology",
+      "avatar": "📚",
+      "birth_date": "~17 AD",
+      "death_date": "~97 AD (estimated)",
+      "theology": {
+        "primary_doctrine": "Faithful Stewardship of True Doctrine and Ministry",
+        "core_beliefs": ["Sound doctrine guarded and passed down preserves faith", "Ministry in Christ requires courage and perseverance", "Timothy received from Paul and must pass to others", "Faith continues through faithful generations of believers"],
+        "key_verses": ["2 Timothy 1:14", "2 Timothy 4:5", "1 Timothy 4:12"],
+        "additional_sources": [
+          {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
+          {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
+          {"book": "The Complete Jewish Bible", "author": "David H. Stern"}
         ]
       }
     }
