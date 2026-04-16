@@ -447,19 +447,15 @@ function App() {
           <div className="dialogue-header">
             <h2>{selectedCharacter.charAt(0).toUpperCase() + selectedCharacter.slice(1)}</h2>
             <div className="header-actions">
-              {messages.length > 0 && (
-                <>
-                  <button onClick={() => setShowSaveDialog(true)} className="btn-forward">
-                    💾 Save Conversation
-                  </button>
-                  <button onClick={forwardConversation} className="btn-forward">
-                    📤 Export Conversation
-                  </button>
-                  <button onClick={clearConversation} className="btn-forward btn-danger">
-                    🗑️ Clear Conversation
-                  </button>
-                </>
-              )}
+              <button onClick={() => setShowSaveDialog(true)} className="btn-forward" disabled={messages.length === 0}>
+                💾 Save Conversation
+              </button>
+              <button onClick={forwardConversation} className="btn-forward" disabled={messages.length === 0}>
+                📤 Export Conversation
+              </button>
+              <button onClick={clearConversation} className="btn-forward btn-danger" disabled={messages.length === 0}>
+                🗑️ Clear Conversation
+              </button>
               <button onClick={() => { loadUserConversations(); setShowSavedConversations(true); }} className="btn-forward">
                 📋 Saved Conversations
               </button>

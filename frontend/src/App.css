@@ -591,6 +591,20 @@ body {
   color: #ff8888;
 }
 
+.btn-forward:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: rgba(212, 165, 116, 0.08);
+  border-color: rgba(139, 115, 85, 0.5);
+  color: rgba(212, 165, 116, 0.6);
+}
+
+.btn-forward:disabled:hover {
+  background: rgba(212, 165, 116, 0.08);
+  border-color: rgba(139, 115, 85, 0.5);
+  color: rgba(212, 165, 116, 0.6);
+}
+
 /* Header Actions Layout */
 .header-actions {
   display: flex;
