@@ -125,6 +125,7 @@ class CharacterAgent:
         self.teaching_areas = character_data.get("teaching_areas", [])
         self.conversation_history = []
         self.sources_data = sources_data or {}
+        self.is_professor = character_data.get("is_professor", False)
 
     def get_system_prompt(self) -> str:
         """Generate system prompt with character theology and personality"""
@@ -151,7 +152,73 @@ class CharacterAgent:
                 primary_sources_text += f"- {ref.get('title', 'Unknown')} by {ref.get('author', 'Unknown')}\n"
                 primary_sources_text += f"  Focus: {ref.get('focus', 'General knowledge')}\n"
         
-        return f"""You ARE {self.name} from the King James Version 1611 Holy Bible.
+        # PROFESSOR-SPECIFIC PROMPT
+        if self.is_professor:
+            return f"""You ARE {self.name}.
+
+CHARACTER PROFILE:
+- Name: {self.name}
+- Personality: {personality}
+- Area of Expertise: {', '.join(self.teaching_areas)}
+
+SPEAKING STYLE - PROFESSIONAL ACADEMIC VOICE:
+- Speak with professional reliability and scholarly precision
+- Use clear, organized language without informal filler
+- Avoid colloquialisms, exclamations, and modern slang
+- Provide evidence-based reasoning and systematic analysis
+- Support claims with specific sources and methodologies
+- Be concise and direct - respect the reader's time
+- Present information in logical order with clear progression
+- Use topic sentences to guide the reader through ideas
+
+COMMUNICATION PRINCIPLES:
+1. Professional Tone: Maintain academic formality throughout
+2. Evidence First: Ground all statements in sources and evidence
+3. Systematic Approach: Organize thoughts logically and clearly
+4. Careful Language: Choose words precisely, avoid ambiguity
+5. Brevity: Say what is necessary without excess elaboration
+6. Methodological Rigor: Explain your reasoning and sources
+7. Avoid Filler: No "Let me explain," "Basically," "You know," etc.
+
+STRUCTURE YOUR RESPONSE:
+- Begin with the most relevant evidence or key point
+- Present supporting information in logical sequence
+- Cite sources by name and author when referencing
+- Draw conclusions based on presented evidence
+- End with key sources referenced
+
+CONTENT APPROACH:
+- Quote directly from authoritative sources when relevant
+- Explain the significance of evidence systematically
+- Connect individual points to broader understanding
+- Acknowledge limitations of current knowledge when appropriate
+- Reference peer-reviewed sources and recognized scholars
+
+NEVER DO THIS:
+- No conversational headers like "Well," "So," "You see"
+- No apologetic phrases like "I think" or "In my opinion"
+- No lifestyle or self-help language
+- No vague generalizations without support
+- No modern corporate jargon or buzzwords
+- No motivational pep talks or emotional appeals
+
+EXAMPLE GOOD RESPONSE:
+"The Letter to Timothy provides clear evidence for this principle. According to 2 Timothy 2:15, the text emphasizes the importance of presenting oneself approved, particularly in handling 'the word of truth correctly.' The Greek term 'orthotomeo' literally means 'to cut straight,' indicating precise, methodical engagement with Scripture. This reflects the scholarly rigor required in theological study."
+
+EXAMPLE BAD RESPONSE:
+"Well, you see, Timothy really emphasizes this! Basically, 2 Timothy 2:15 is all about, like, being careful with the Bible, right? It's really important to, you know, take the Word seriously. I think that's super relevant today."
+
+THINE VERSES: {key_verses}{primary_sources_text}{sources_text}
+
+REMEMBER:
+- Speak as a scholar first, entertainer never
+- Let evidence and logic carry your message
+- Academic precision is your strength
+- Direct, clear communication is professional communication"""
+        
+        # BIBLICAL CHARACTER PROMPT (original)
+        else:
+            return f"""You ARE {self.name} from the King James Version 1611 Holy Bible.
 
 CRITICAL - PRIMARY SOURCE IS KJV 1611:
 - Thy words MUST primarily be from the KJV 1611 Bible
@@ -272,28 +339,29 @@ CORRECT:
                 for i, ill in enumerate(illustrations):
                     print(f"[DEBUG]   Illustration {i+1}: {ill['description'][:80]}...")
             
-            # Light cleaning - only remove clear instructional/meta text
-            forbidden_starts = [
-                "Here are", "Here is", "For example", "Suggestions:",
-                "Yes, of course", "Examples:",
-                "Absolutely", "Here's", "Let me explain", "As I mentioned",
-                "Of course", "Actually", "Well,", "So,", "You see,",
-                "In conclusion", "To summarize", "In summary"
-            ]
-            
-            # Remove lines that start with forbidden phrases (case insensitive)
-            lines = character_response.split('\n')
-            cleaned_lines = []
-            for line in lines:
-                line = line.strip()
-                if not line:
-                    continue
-                # Skip lines starting with forbidden phrases (with word boundary check)
-                if any(line.lower().startswith(forbidden.lower()) for forbidden in forbidden_starts):
-                    continue
-                cleaned_lines.append(line)
-            
-            character_response = ' '.join(cleaned_lines).strip()
+            # Light cleaning - only remove clear instructional/meta text (NOT for professors)
+            if not self.is_professor:
+                forbidden_starts = [
+                    "Here are", "Here is", "For example", "Suggestions:",
+                    "Yes, of course", "Examples:",
+                    "Absolutely", "Here's", "Let me explain", "As I mentioned",
+                    "Of course", "Actually", "Well,", "So,", "You see,",
+                    "In conclusion", "To summarize", "In summary"
+                ]
+                
+                # Remove lines that start with forbidden phrases (case insensitive)
+                lines = character_response.split('\n')
+                cleaned_lines = []
+                for line in lines:
+                    line = line.strip()
+                    if not line:
+                        continue
+                    # Skip lines starting with forbidden phrases (with word boundary check)
+                    if any(line.lower().startswith(forbidden.lower()) for forbidden in forbidden_starts):
+                        continue
+                    cleaned_lines.append(line)
+                
+                character_response = ' '.join(cleaned_lines).strip()
             
             # Stop at dialogue markers (but NOT markdown ### headers or Q&A in content)
             # Only stop at these if they appear at line boundaries (meta-markers)
@@ -316,20 +384,31 @@ CORRECT:
                     # Re-extract illustrations from raw response
                     character_response, illustrations = self._extract_illustrations(raw_response)
             
-            # Final cleaning - remove third-person and modern filler phrases
-            forbidden_phrases = [
-                f"{self.name} said", f"{self.name} says", f"{self.name} spoke",
-                "He said", "She said", "He says", "She says",
-                "The scriptures say", "According to", "In the Bible",
-                "Response:", "Answer:",
-                "I think", "I believe that", "In my opinion", "I feel",
-                "Psychology", "Therapy", "Meditation technique",
-                "Self-help", "Personal growth", "Mindfulness",
-                "Inner peace", "Find yourself", "Discover your",
-                "Visualize", "Manifest", "Energy", "Universe",
-                "Absolutely", "Actually", "Of course", "Well,", "So,", "You see,",
-                "Let me explain", "As I mentioned", "As I said earlier"
-            ]
+            # Final cleaning - remove inappropriate content based on character type
+            if self.is_professor:
+                # Professors should avoid New Age and self-help language, but can use scholarly expressions
+                forbidden_phrases = [
+                    "Psychology", "Therapy", "Meditation technique",
+                    "Self-help", "Personal growth", "Mindfulness",
+                    "Inner peace", "Find yourself", "Discover your",
+                    "Visualize", "Manifest", "Energy", "Universe",
+                    "Chakra", "Aura", "Cosmic", "Transcendence"
+                ]
+            else:
+                # Biblical characters should avoid modern phrases and self-help language
+                forbidden_phrases = [
+                    f"{self.name} said", f"{self.name} says", f"{self.name} spoke",
+                    "He said", "She said", "He says", "She says",
+                    "The scriptures say", "According to", "In the Bible",
+                    "Response:", "Answer:",
+                    "I think", "I believe that", "In my opinion", "I feel",
+                    "Psychology", "Therapy", "Meditation technique",
+                    "Self-help", "Personal growth", "Mindfulness",
+                    "Inner peace", "Find yourself", "Discover your",
+                    "Visualize", "Manifest", "Energy", "Universe",
+                    "Absolutely", "Actually", "Of course", "Well,", "So,", "You see,",
+                    "Let me explain", "As I mentioned", "As I said earlier"
+                ]
             for phrase in forbidden_phrases:
                 if phrase in character_response:
                     character_response = character_response.replace(phrase, "").strip()
@@ -337,17 +416,19 @@ CORRECT:
             # Clean up double spaces and normalize
             character_response = ' '.join(character_response.split())
             
-            # Ensure it starts with first-person if possible
-            first_person_starts = ["I ", "My ", "Mine ", "Me ", "Verily,", "Behold,"]
-            if character_response and not any(character_response.startswith(fp) for fp in first_person_starts):
-                # If response doesn't start with I/My, check if we need to prefix
-                if not character_response.startswith(("Thou", "Thee")):
-                    character_response = "I say unto thee, " + character_response
+            # Ensure it starts with first-person if possible (biblical characters only)
+            if not self.is_professor:
+                first_person_starts = ["I ", "My ", "Mine ", "Me ", "Verily,", "Behold,"]
+                if character_response and not any(character_response.startswith(fp) for fp in first_person_starts):
+                    # If response doesn't start with I/My, check if we need to prefix
+                    if not character_response.startswith(("Thou", "Thee")):
+                        character_response = "I say unto thee, " + character_response
             
             # Final check
             if not character_response:
+                error_msg = f"I could not generate a proper response. Please try again." if not self.is_professor else f"Unable to generate a substantive response. Please rephrase your question."
                 return {
-                    "text": f"Forgive me, {player_name}. I could not generate a proper response. Please try again.",
+                    "text": f"{error_msg}",
                     "illustrations": []
                 }
             
