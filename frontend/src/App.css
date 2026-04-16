@@ -579,6 +579,18 @@ body {
   color: var(--color-cream);
 }
 
+.btn-forward.btn-danger {
+  border-color: #8b4545;
+  color: #d48080;
+  background: rgba(139, 69, 69, 0.15);
+}
+
+.btn-forward.btn-danger:hover {
+  background: rgba(200, 50, 50, 0.25);
+  border-color: #ff6b6b;
+  color: #ff8888;
+}
+
 /* Header Actions Layout */
 .header-actions {
   display: flex;
@@ -624,16 +636,26 @@ body {
 
 .welcome-msg {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 200px;
   text-align: center;
+  gap: 1rem;
 }
 
 .welcome-msg p {
   font-size: 1.2rem;
   color: var(--color-tan);
   font-style: italic;
+  margin: 0;
+}
+
+.welcome-msg .session-note {
+  font-size: 0.95rem;
+  color: var(--color-gold);
+  font-style: normal;
+  opacity: 0.8;
 }
 
 .loading {

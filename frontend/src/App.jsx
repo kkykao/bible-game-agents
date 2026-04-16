@@ -55,20 +55,64 @@ function App() {
     if (name.trim()) {
       setPlayerName(name)
       setGameStarted(true)
+      // Save player name to localStorage for future sessions
+      localStorage.setItem('playerName', name)
     }
   }
+
+  // Load player name from localStorage on first load
+  useEffect(() => {
+    const savedPlayerName = localStorage.getItem('playerName')
+    if (savedPlayerName) {
+      setPlayerName(savedPlayerName)
+    }
+  }, [])
 
   const selectGroup = (groupId) => {
     setSelectedGroup(groupId)
     setGroupCharacters([])
   }
 
+  // Load messages from localStorage when component mounts or selectedCharacter changes
+  useEffect(() => {
+    if (selectedCharacter) {
+      const storageKey = `conversation_${playerName}_${selectedCharacter}`
+      const savedMessages = localStorage.getItem(storageKey)
+      if (savedMessages) {
+        try {
+          setMessages(JSON.parse(savedMessages))
+        } catch (error) {
+          console.error('Error loading messages from localStorage:', error)
+          setMessages([])
+        }
+      }
+    }
+  }, [selectedCharacter, playerName])
+
+  // Save messages to localStorage whenever they change
+  useEffect(() => {
+    if (selectedCharacter && messages.length > 0) {
+      const storageKey = `conversation_${playerName}_${selectedCharacter}`
+      localStorage.setItem(storageKey, JSON.stringify(messages))
+    }
+  }, [messages, selectedCharacter, playerName])
+
   const selectCharacter = (character) => {
     setSelectedCharacter(character)
-    setMessages([])
+    // Don't clear messages - they'll be loaded from localStorage
     setInputMessage('')
     setEditingIndex(null)
     setEditingContent('')
+  }
+
+  const clearConversation = () => {
+    if (!window.confirm('Are you sure you want to clear this conversation? This cannot be undone.')) {
+      return
+    }
+    setMessages([])
+    // Also clear from localStorage
+    const storageKey = `conversation_${playerName}_${selectedCharacter}`
+    localStorage.removeItem(storageKey)
   }
 
   const copyToClipboard = (content) => {
@@ -382,6 +426,9 @@ function App() {
                   <button onClick={forwardConversation} className="btn-forward">
                     📤 Export Conversation
                   </button>
+                  <button onClick={clearConversation} className="btn-forward btn-danger">
+                    🗑️ Clear Conversation
+                  </button>
                 </>
               )}
               <button onClick={() => { loadUserConversations(); setShowSavedConversations(true); }} className="btn-forward">
@@ -399,6 +446,9 @@ function App() {
               <div className="welcome-msg">
                 <p>
                   Greetings, {playerName}! Ask me anything about Scripture and faith.
+                </p>
+                <p className="session-note">
+                  💡 Your conversation will be saved automatically. Close and return anytime to continue.
                 </p>
               </div>
             ) : (
