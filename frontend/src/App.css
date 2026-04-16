@@ -364,6 +364,7 @@ body {
   color: var(--color-gold);
   flex: 1;
   min-width: 200px;
+  margin: 0;
 }
 
 .back-buttons {
@@ -450,6 +451,141 @@ body {
 .message p {
   margin: 0;
   line-height: 1.5;
+}
+
+/* Message Header and Actions */
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+  gap: 1rem;
+}
+
+.message-header strong {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--color-gold);
+  flex: 1;
+}
+
+.message-actions {
+  display: flex;
+  gap: 0.5rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.message:hover .message-actions {
+  opacity: 1;
+}
+
+.btn-action {
+  background: transparent;
+  border: 1px solid var(--color-brown);
+  color: var(--color-tan);
+  padding: 0.4rem 0.6rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+  border-radius: 3px;
+  transition: all 0.2s ease;
+  font-family: 'Georgia', serif;
+}
+
+.btn-action:hover:not(:disabled) {
+  background: rgba(212, 165, 116, 0.2);
+  color: var(--color-gold);
+  border-color: var(--color-gold);
+}
+
+.btn-action:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Edit Mode */
+.edit-mode {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.edit-textarea {
+  background: rgba(26, 20, 16, 0.7);
+  border: 2px solid var(--color-brown);
+  color: var(--color-gold);
+  padding: 0.8rem;
+  font-family: 'Georgia', serif;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  border-radius: 3px;
+  resize: vertical;
+}
+
+.edit-textarea:focus {
+  outline: none;
+  border-color: var(--color-gold);
+  box-shadow: 0 0 10px rgba(212, 165, 116, 0.3);
+}
+
+.edit-buttons {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.btn-save,
+.btn-cancel {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-brown);
+  background: rgba(212, 165, 116, 0.1);
+  color: var(--color-tan);
+  cursor: pointer;
+  font-family: 'Georgia', serif;
+  border-radius: 3px;
+  transition: all 0.2s ease;
+  font-size: 0.85rem;
+}
+
+.btn-save:hover {
+  background: rgba(100, 200, 50, 0.2);
+  border-color: #64c832;
+  color: #64c832;
+}
+
+.btn-cancel:hover {
+  background: rgba(200, 50, 50, 0.2);
+  border-color: #ff6b6b;
+  color: #ff6b6b;
+}
+
+/* Forward/Export Button */
+.btn-forward {
+  background: rgba(212, 165, 116, 0.15);
+  border: 2px solid var(--color-brown);
+  color: var(--color-gold);
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  border-radius: 3px;
+  font-family: 'Georgia', serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-forward:hover {
+  background: rgba(212, 165, 116, 0.25);
+  border-color: var(--color-gold);
+  color: var(--color-cream);
+}
+
+/* Header Actions Layout */
+.header-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
 }
 
 /* Illustrations Section */
