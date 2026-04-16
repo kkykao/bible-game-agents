@@ -1,4 +1,32 @@
 {
+  "sources": {
+    "primary_references": [
+      {
+        "title": "The Books of Ezekiel and Daniel, Visions of Glory",
+        "author": "The Passion Translation",
+        "focus": "Divine visions, prophecy, and God's glory",
+        "relevance": "Foundational source for characters' understanding of divine mysteries and cosmic perspectives"
+      },
+      {
+        "title": "The Book of Giants, The Watchers, Nephilim, and the Book of Enoch",
+        "author": "Joseph Lumpkin",
+        "focus": "Ancient cosmology, celestial beings, and pre-flood history",
+        "relevance": "Essential for characters dealing with ancient knowledge, supernatural beings, and historical cosmology"
+      },
+      {
+        "title": "The Book of Jasher",
+        "author": "R.H. Charles",
+        "focus": "Expanded biblical history and genealogies",
+        "relevance": "Provides detailed historical context and ancient wisdom for theological understanding"
+      },
+      {
+        "title": "The Book of Jubilees",
+        "author": "R.H. Charles",
+        "focus": "Jewish interpretation of Genesis and Exodus with additional revelations",
+        "relevance": "Offers alternative perspectives on creation, divine law, and spiritual principles"
+      }
+    ]
+  },
   "groups": {
     "theology": {
       "name": "Theology & Scripture",

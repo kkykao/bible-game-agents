@@ -117,13 +117,14 @@ def call_api_with_fallback(client, system_prompt, messages, max_tokens=400, temp
 class CharacterAgent:
     """Base character agent for dialogue"""
 
-    def __init__(self, character_id: str, character_data: dict):
+    def __init__(self, character_id: str, character_data: dict, sources_data: dict = None):
         self.character_id = character_id
         self.name = character_data.get("name", character_id.capitalize())
         self.theology = character_data.get("theology", {})
         self.personality = character_data.get("personality", "")
         self.teaching_areas = character_data.get("teaching_areas", [])
         self.conversation_history = []
+        self.sources_data = sources_data or {}
 
     def get_system_prompt(self) -> str:
         """Generate system prompt with character theology and personality"""
@@ -131,7 +132,7 @@ class CharacterAgent:
         personality = self.personality
         key_verses = ', '.join(self.theology.get('key_verses', [])[:3]) if self.theology else ''
         
-        # Build additional sources text
+        # Build additional sources text from character-specific sources
         additional_sources = self.theology.get('additional_sources', [])
         sources_text = ""
         if additional_sources:
@@ -141,6 +142,14 @@ class CharacterAgent:
                 if source.get('relevant_passages'):
                     passages = ', '.join(source.get('relevant_passages', []))
                     sources_text += f"  Passages: {passages}\n"
+        
+        # Build primary reference sources text
+        primary_sources_text = ""
+        if self.sources_data and 'primary_references' in self.sources_data:
+            primary_sources_text = "\n\nPRIMARY REFERENCE SOURCES FOR ALL WISDOM:\n"
+            for ref in self.sources_data['primary_references']:
+                primary_sources_text += f"- {ref.get('title', 'Unknown')} by {ref.get('author', 'Unknown')}\n"
+                primary_sources_text += f"  Focus: {ref.get('focus', 'General knowledge')}\n"
         
         return f"""You ARE {self.name} from the King James Version 1611 Holy Bible.
 
@@ -162,7 +171,7 @@ STRICT RULES:
 3. NO modern words: "Absolutely," "Explanation," "Here's," "Actually," "Of course"
 4. Begin with KJV Scripture quote, then draw from authorized sources
 5. End with: " - Book Chapter:Verse (Source)"
-6. Only use authorized sources listed below - NO other books{sources_text}
+6. Only use authorized sources listed below - NO other books{primary_sources_text}{sources_text}
 
 THY VERSES: {key_verses}
 
@@ -316,17 +325,19 @@ class CharacterAgentFactory:
         
         self.character_data = {}
         self.groups_data = {}
+        self.sources_data = {}
         self._load_character_profiles(character_profiles_path)
         self.agents = {}
 
     def _load_character_profiles(self, path: str) -> None:
-        """Load character profiles and groups from JSON"""
+        """Load character profiles, groups, and sources from JSON"""
         try:
             if os.path.exists(path):
                 with open(path, "r", encoding="utf-8") as f:
                     data = json.load(f)
                     self.character_data = data.get("characters", {})
                     self.groups_data = data.get("groups", {})
+                    self.sources_data = data.get("sources", {})
                     return
         except Exception as e:
             print(f"Error loading character profiles: {e}")
@@ -344,6 +355,7 @@ class CharacterAgentFactory:
                 "characters": ["jesus", "david", "solomon"]
             }
         }
+        self.sources_data = {}
 
     def get_agent(self, character_id: str) -> CharacterAgent:
         """Get or create character agent"""
@@ -358,8 +370,8 @@ class CharacterAgentFactory:
                 "teaching_areas": []
             })
             
-            # Create agent
-            self.agents[character_id] = CharacterAgent(character_id, char_data)
+            # Create agent with sources data
+            self.agents[character_id] = CharacterAgent(character_id, char_data, self.sources_data)
         
         return self.agents[character_id]
 
@@ -395,6 +407,10 @@ class CharacterAgentFactory:
             "group_description": group.get("description", ""),
             "characters": characters_list
         }
+    
+    def get_sources(self) -> dict:
+        """Get all primary reference sources for character knowledge"""
+        return self.sources_data
 
 
 # Global factory instance
@@ -427,3 +443,10 @@ def get_characters_in_group(group_id: str) -> dict:
     if _factory is None:
         _factory = CharacterAgentFactory()
     return _factory.get_characters_by_group(group_id)
+
+def get_reference_sources() -> dict:
+    """Get all primary reference sources for character wisdom"""
+    global _factory
+    if _factory is None:
+        _factory = CharacterAgentFactory()
+    return _factory.get_sources()

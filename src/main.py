@@ -6,7 +6,7 @@ import os
 from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, Session
-from agents.character_agent import get_character_agent, get_all_characters, get_character_groups, get_characters_in_group
+from agents.character_agent import get_character_agent, get_all_characters, get_character_groups, get_characters_in_group, get_reference_sources
 from models import Base
 
 # Load environment variables
@@ -83,6 +83,14 @@ async def get_group_characters(group_id: str):
     if not group_data:
         raise HTTPException(status_code=404, detail=f"Group '{group_id}' not found")
     return group_data
+
+@app.get("/api/sources")
+async def get_sources():
+    """Return primary reference sources for character wisdom"""
+    sources = get_reference_sources()
+    return {
+        "sources": sources
+    }
 
 @app.post("/api/dialogue")
 async def send_dialogue(request: DialogueRequest):
