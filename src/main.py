@@ -6,7 +6,7 @@ import os
 from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, Session
-from agents.character_agent import get_character_agent, get_all_characters
+from agents.character_agent import get_character_agent, get_all_characters, get_character_groups, get_characters_in_group
 from models import Base
 
 # Load environment variables
@@ -67,6 +67,22 @@ async def get_characters():
     return {
         "characters": characters
     }
+
+@app.get("/api/groups")
+async def get_groups():
+    """Return character groups with descriptions"""
+    groups = get_character_groups()
+    return {
+        "groups": groups
+    }
+
+@app.get("/api/groups/{group_id}")
+async def get_group_characters(group_id: str):
+    """Return all characters in a specific group"""
+    group_data = get_characters_in_group(group_id)
+    if not group_data:
+        raise HTTPException(status_code=404, detail=f"Group '{group_id}' not found")
+    return group_data
 
 @app.post("/api/dialogue")
 async def send_dialogue(request: DialogueRequest):

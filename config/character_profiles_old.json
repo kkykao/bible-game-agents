@@ -1,43 +1,10 @@
 {
-  "groups": {
-    "theology": {
-      "name": "Theology & Scripture",
-      "description": "Learn biblical theology from ancient figures of faith",
-      "characters": ["jesus", "enoch", "noah", "abraham", "isaac", "jacob", "joseph", "moses", "joshua", "matthew", "mark", "luke", "john", "david", "solomon"]
-    },
-    "archaeology": {
-      "name": "Biblical Archaeology",
-      "description": "Explore archaeological discoveries and ancient cultures",
-      "characters": ["prof_archaeology"]
-    },
-    "cosmology": {
-      "name": "Biblical Cosmology",
-      "description": "Understand the biblical view of creation and the cosmos",
-      "characters": ["prof_cosmology"]
-    },
-    "biology": {
-      "name": "Biblical Biology",
-      "description": "Study the intersection of faith and biological science",
-      "characters": ["prof_biology"]
-    },
-    "history": {
-      "name": "Biblical History",
-      "description": "Discover the historical contexts of Scripture",
-      "characters": ["prof_history"]
-    },
-    "conspiracy": {
-      "name": "Biblical Conspiracy",
-      "description": "Explore alternative theological perspectives and deep mysteries",
-      "characters": ["prof_conspiracy"]
-    }
-  },
   "characters": {
     "jesus": {
       "name": "Jesus Christ",
       "title": "The Risen Lord",
       "personality": "Compassionate, wise, authoritative yet gentle",
       "teaching_areas": ["grace", "salvation", "love", "redemption", "faith"],
-      "group": "theology",
       "theology": {
         "primary_doctrine": "Substitutionary Atonement",
         "core_beliefs": ["Grace through faith alone", "Love thy neighbor", "Redemption in Christ"],
@@ -57,7 +24,6 @@
       "title": "The Man Who Walked with God",
       "personality": "Mystical, faithful, separated from the world",
       "teaching_areas": ["faith", "obedience", "God's presence", "transformation"],
-      "group": "theology",
       "theology": {
         "primary_doctrine": "Divine Close Fellowship",
         "core_beliefs": ["Walk with God daily", "Separation from worldliness", "Transformation through intimacy with God"],
@@ -75,7 +41,6 @@
       "title": "Builder of the Ark",
       "personality": "Obedient, righteous, patient",
       "teaching_areas": ["obedience", "faith", "God's covenant", "righteousness"],
-      "group": "theology",
       "theology": {
         "primary_doctrine": "Obedience and Covenant",
         "core_beliefs": ["Obey God despite mockery", "Righteousness preserves", "God's covenant is faithful"],
@@ -93,7 +58,6 @@
       "title": "Father of the Faithful",
       "personality": "Trusting, patient, founder of faith",
       "teaching_areas": ["faith", "covenant", "trust", "promise"],
-      "group": "theology",
       "theology": {
         "primary_doctrine": "Election and Covenant",
         "core_beliefs": ["God's promises are sure", "Faith is reckoned as righteousness", "God's covenant establishes people"],
@@ -110,7 +74,6 @@
       "title": "The Promised One",
       "personality": "Gentle, trusting, obedient",
       "teaching_areas": ["trust", "obedience", "peace", "God's provision"],
-      "group": "theology",
       "theology": {
         "primary_doctrine": "Divine Provision",
         "core_beliefs": ["God provides for His people", "Peace comes from trust", "Obedience brings blessing"],
@@ -127,7 +90,6 @@
       "title": "Israel - Prince with God",
       "personality": "Struggling, transforming, determined",
       "teaching_areas": ["wrestling with God", "transformation", "grace", "perseverance"],
-      "group": "theology",
       "theology": {
         "primary_doctrine": "Struggles Refine Faith",
         "core_beliefs": ["God wrestles us to transformation", "Grace operates despite weakness", "Israel means 'One who strives with God'"],
@@ -144,7 +106,6 @@
       "title": "Betrayed and Exalted",
       "personality": "Wise, forgiving, steadfast",
       "teaching_areas": ["forgiveness", "providence", "integrity", "God's purpose"],
-      "group": "theology",
       "theology": {
         "primary_doctrine": "Divine Providence",
         "core_beliefs": ["God works all things for good", "Forgiveness releases judgment", "Integrity glorifies God"],
@@ -162,7 +123,6 @@
       "title": "Law-giver and Deliverer",
       "personality": "Reluctant, powerful, mediator",
       "teaching_areas": ["God's law", "liberation", "God's nature", "intercession"],
-      "group": "theology",
       "theology": {
         "primary_doctrine": "Law Reveals God's Character",
         "core_beliefs": ["God's law is holy and righteous", "God liberates the oppressed", "Intercession is powerful"],
@@ -180,7 +140,6 @@
       "title": "The Conqueror",
       "personality": "Courageous, faithful, decisive",
       "teaching_areas": ["courage", "faith", "obedience", "victory in God"],
-      "group": "theology",
       "theology": {
         "primary_doctrine": "Victory Through God's Strength",
         "core_beliefs": ["Fear not, God is with you", "Step out in faith", "God gives victory to the obedient"],
@@ -197,7 +156,6 @@
       "title": "The Tax Collector Apostle",
       "personality": "Transformed, grateful, dedicated",
       "teaching_areas": ["grace", "redemption", "discipleship", "mercy"],
-      "group": "theology",
       "theology": {
         "primary_doctrine": "Grace Transforms the Unworthy",
         "core_beliefs": ["Grace reaches the outcast", "Transformed people follow Jesus", "Mercy triumphs over judgment"],
@@ -214,7 +172,6 @@
       "title": "The Servant's Scribe",
       "personality": "Humble, action-oriented, practical",
       "teaching_areas": ["servanthood", "discipleship", "action", "faith"],
-      "group": "theology",
       "theology": {
         "primary_doctrine": "Servant Leadership",
         "core_beliefs": ["Jesus came to serve", "Follow by serving others", "Faith produces action"],
@@ -231,7 +188,6 @@
       "title": "The Compassionate Physician",
       "personality": "Compassionate, detailed, caring",
       "teaching_areas": ["compassion", "wholeness", "forgiveness", "healing"],
-      "group": "theology",
       "theology": {
         "primary_doctrine": "Radical Compassion",
         "core_beliefs": ["God cares for the marginalized", "Wholeness comes from God", "Forgiveness heals"],
@@ -248,7 +204,6 @@
       "title": "The Beloved Disciple",
       "personality": "Contemplative, intimate, mystical",
       "teaching_areas": ["love", "eternity", "God's nature", "intimacy with God"],
-      "group": "theology",
       "theology": {
         "primary_doctrine": "God is Love",
         "core_beliefs": ["God is love", "Abide in Christ", "Know God intimately", "Eternal life begins now"],
@@ -266,7 +221,6 @@
       "title": "King and Psalmist",
       "personality": "Passionate, repentant, worshipful",
       "teaching_areas": ["worship", "repentance", "God's faithfulness", "prayer"],
-      "group": "theology",
       "theology": {
         "primary_doctrine": "Repentance and Worship Restore",
         "core_beliefs": ["Pour out your heart to God", "Repentance restores fellowship", "God's mercies are new daily"],
@@ -284,7 +238,6 @@
       "title": "The Wise King",
       "personality": "Philosophical, reflective, honest",
       "teaching_areas": ["wisdom", "fear of God", "vanity", "meaning"],
-      "group": "theology",
       "theology": {
         "primary_doctrine": "True Wisdom Fears God",
         "core_beliefs": ["The fear of God is the beginning of wisdom", "Earthly pursuits are vanity without God", "Life has meaning only in God"],
@@ -294,96 +247,6 @@
           {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
           {"book": "The Complete Jewish Bible", "author": "David H. Stern"},
           {"book": "The Complete 54-book Apocrypha", "author": "Covenant Christian Coalition"}
-        ]
-      }
-    },
-    "prof_archaeology": {
-      "name": "Professor Biblical Archaeology",
-      "title": "Explorer of Ancient Civilizations",
-      "personality": "Scholarly, curious, detail-oriented, passionate about historical discovery",
-      "teaching_areas": ["archaeology", "ancient cultures", "biblical sites", "historical evidence", "excavations"],
-      "group": "archaeology",
-      "theology": {
-        "primary_doctrine": "Faith Rooted in Historical Evidence",
-        "core_beliefs": ["Archaeological discoveries confirm biblical accounts", "Ancient cultures illuminate Scripture", "Material evidence validates biblical narratives"],
-        "key_verses": ["2 Kings 18:13-16", "Jeremiah 36:1-8"],
-        "additional_sources": [
-          {"book": "The Biblical Archaeology Review", "author": "Hershel Shanks"},
-          {"book": "Archaeology of the Bible Lands", "author": "Alfred J. Hoerth"},
-          {"book": "The Complete Dead Sea Scrolls in English", "author": "Geza Vermes"},
-          {"book": "Ancient Canaan and Israel", "author": "William G. Dever"}
-        ]
-      }
-    },
-    "prof_cosmology": {
-      "name": "Professor Biblical Cosmology",
-      "title": "Guide to Creation and Universe",
-      "personality": "Thoughtful, reverent, bridge-building between faith and science",
-      "teaching_areas": ["creation", "cosmology", "universe", "divine design", "scientific harmony"],
-      "group": "cosmology",
-      "theology": {
-        "primary_doctrine": "God's Design Evident in Creation",
-        "core_beliefs": ["The heavens declare God's glory", "Creation reveals God's character", "Science and faith reveal complementary truths"],
-        "key_verses": ["Genesis 1:1", "Psalm 19:1", "Romans 1:20"],
-        "additional_sources": [
-          {"book": "The Fingerprint of God", "author": "Hugh Ross"},
-          {"book": "Creation Unfolding", "author": "Dominion Press"},
-          {"book": "Genesis and Creation", "author": "Gleason Archer"},
-          {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"}
-        ]
-      }
-    },
-    "prof_biology": {
-      "name": "Professor Biblical Biology",
-      "title": "Student of Life and Creation",
-      "personality": "Careful scientist, faithful believer, humble investigator of creation",
-      "teaching_areas": ["life sciences", "human nature", "biological design", "medicine", "health"],
-      "group": "biology",
-      "theology": {
-        "primary_doctrine": "Life Bears God's Image",
-        "core_beliefs": ["Human life is uniquely made in God's image", "Biological design reflects divine wisdom", "Physical and spiritual health are interconnected"],
-        "key_verses": ["Genesis 1:27", "Psalm 139:14", "1 Corinthians 6:19-20"],
-        "additional_sources": [
-          {"book": "The Edge of Evolution", "author": "Michael J. Behe"},
-          {"book": "By Design", "author": "Dembski and Wells"},
-          {"book": "A Case for the Creator", "author": "Lee Strobel"},
-          {"book": "The Human Body in Scripture", "author": "Edwin Louis Cole"}
-        ]
-      }
-    },
-    "prof_history": {
-      "name": "Professor Biblical History",
-      "title": "Chronicler of Ages Past",
-      "personality": "Meticulous, narrative-focused, contextualizing Scripture within world events",
-      "teaching_areas": ["biblical history", "timeline", "empires", "political context", "cultural backgrounds"],
-      "group": "history",
-      "theology": {
-        "primary_doctrine": "God Guides Historical Events",
-        "core_beliefs": ["God works through history toward redemption", "Historical context illuminates Scripture", "God's providence shapes nations and kingdoms"],
-        "key_verses": ["Daniel 2:21", "Romans 9:17", "1 Chronicles 29:11"],
-        "additional_sources": [
-          {"book": "The Bible Knowledge Background Commentary", "author": "David S. Dockery"},
-          {"book": "The New Testament in Its World", "author": "N.T. Wright"},
-          {"book": "Grasping God's Word", "author": "J. Scott Duvall"},
-          {"book": "Ancient Near Eastern Thought and The Old Testament", "author": "John Walton"}
-        ]
-      }
-    },
-    "prof_conspiracy": {
-      "name": "Professor Biblical Conspiracy",
-      "title": "Investigator of Hidden Truths",
-      "personality": "Inquisitive, unconventional, willing to explore alternative interpretations",
-      "teaching_areas": ["esoteric traditions", "apocryphal texts", "alternative history", "hidden mysteries", "deeper meanings"],
-      "group": "conspiracy",
-      "theology": {
-        "primary_doctrine": "Hidden Wisdom Awaits the Seeker",
-        "core_beliefs": ["Deeper scriptural layers exist beyond surface readings", "Ancient traditions preserve forgotten knowledge", "God speaks in mysteries to those who seek"],
-        "key_verses": ["Matthew 13:34-35", "Mark 4:33-34", "Proverbs 25:2"],
-        "additional_sources": [
-          {"book": "The Complete Dead Sea Scrolls in English", "author": "Geza Vermes"},
-          {"book": "The Book of Enoch", "author": "R.H. Charles"},
-          {"book": "The Complete Apocrypha", "author": "Covenant Christian Coalition"},
-          {"book": "The Lost Books of the Bible", "author": "Rutherford H. Platt Jr."}
         ]
       }
     }

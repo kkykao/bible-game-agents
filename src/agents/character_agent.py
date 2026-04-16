@@ -314,24 +314,35 @@ class CharacterAgentFactory:
             project_root = os.path.dirname(os.path.dirname(current_dir))
             character_profiles_path = os.path.join(project_root, "config", "character_profiles.json")
         
-        self.character_data = self._load_character_profiles(character_profiles_path)
+        self.character_data = {}
+        self.groups_data = {}
+        self._load_character_profiles(character_profiles_path)
         self.agents = {}
 
-    def _load_character_profiles(self, path: str) -> dict:
-        """Load character profiles from JSON"""
+    def _load_character_profiles(self, path: str) -> None:
+        """Load character profiles and groups from JSON"""
         try:
             if os.path.exists(path):
                 with open(path, "r", encoding="utf-8") as f:
                     data = json.load(f)
-                    return data.get("characters", {})
+                    self.character_data = data.get("characters", {})
+                    self.groups_data = data.get("groups", {})
+                    return
         except Exception as e:
             print(f"Error loading character profiles: {e}")
         
         # Return default minimal profiles if file doesn't exist
-        return {
+        self.character_data = {
             "jesus": {"name": "Jesus", "theology": {}, "personality": "Compassionate and wise", "teaching_areas": ["Grace", "Love", "Redemption"]},
             "david": {"name": "David", "theology": {}, "personality": "Repentant and hopeful", "teaching_areas": ["Psalms", "Faith", "Worship"]},
             "solomon": {"name": "Solomon", "theology": {}, "personality": "Wise and reflective", "teaching_areas": ["Wisdom", "Vanity", "Truth"]},
+        }
+        self.groups_data = {
+            "theology": {
+                "name": "Theology & Scripture",
+                "description": "Learn biblical theology",
+                "characters": ["jesus", "david", "solomon"]
+            }
         }
 
     def get_agent(self, character_id: str) -> CharacterAgent:
@@ -355,6 +366,35 @@ class CharacterAgentFactory:
     def get_all_characters(self) -> list:
         """Get list of all available characters"""
         return list(self.character_data.keys())
+    
+    def get_groups(self) -> dict:
+        """Get all character groups with their info"""
+        return self.groups_data
+    
+    def get_characters_by_group(self, group_id: str) -> dict:
+        """Get all characters in a specific group"""
+        if group_id not in self.groups_data:
+            return None
+        
+        group = self.groups_data[group_id]
+        characters_list = []
+        
+        for char_id in group.get("characters", []):
+            if char_id in self.character_data:
+                char_data = self.character_data[char_id]
+                characters_list.append({
+                    "id": char_id,
+                    "name": char_data.get("name", char_id),
+                    "title": char_data.get("title", ""),
+                    "personality": char_data.get("personality", "")
+                })
+        
+        return {
+            "group_id": group_id,
+            "group_name": group.get("name", ""),
+            "group_description": group.get("description", ""),
+            "characters": characters_list
+        }
 
 
 # Global factory instance
@@ -373,3 +413,17 @@ def get_all_characters() -> list:
     if _factory is None:
         _factory = CharacterAgentFactory()
     return _factory.get_all_characters()
+
+def get_character_groups() -> dict:
+    """Get all character groups"""
+    global _factory
+    if _factory is None:
+        _factory = CharacterAgentFactory()
+    return _factory.get_groups()
+
+def get_characters_in_group(group_id: str) -> dict:
+    """Get all characters in a specific group"""
+    global _factory
+    if _factory is None:
+        _factory = CharacterAgentFactory()
+    return _factory.get_characters_by_group(group_id)

@@ -4,33 +4,57 @@ import './App.css'
 function App() {
   const [playerName, setPlayerName] = useState('')
   const [gameStarted, setGameStarted] = useState(false)
-  const [characters, setCharacters] = useState([])
+  const [groups, setGroups] = useState({})
+  const [selectedGroup, setSelectedGroup] = useState(null)
+  const [groupCharacters, setGroupCharacters] = useState([])
   const [selectedCharacter, setSelectedCharacter] = useState(null)
   const [messages, setMessages] = useState([])
   const [inputMessage, setInputMessage] = useState('')
   const [loading, setLoading] = useState(false)
 
-  // Fetch characters from backend
+  // Fetch character groups from backend
   useEffect(() => {
-    const fetchCharacters = async () => {
+    const fetchGroups = async () => {
       try {
-        const response = await fetch('http://localhost:8000/api/characters')
+        const response = await fetch('http://localhost:8000/api/groups')
         const data = await response.json()
-        setCharacters(data.characters || [])
+        setGroups(data.groups || {})
       } catch (error) {
-        console.error('Error fetching characters:', error)
+        console.error('Error fetching groups:', error)
       }
     }
     if (gameStarted) {
-      fetchCharacters()
+      fetchGroups()
     }
   }, [gameStarted])
+
+  // Fetch characters when a group is selected
+  useEffect(() => {
+    const fetchGroupCharacters = async () => {
+      if (!selectedGroup) return
+      try {
+        const response = await fetch(`http://localhost:8000/api/groups/${selectedGroup}`)
+        const data = await response.json()
+        setGroupCharacters(data.characters || [])
+      } catch (error) {
+        console.error(`Error fetching group ${selectedGroup}:`, error)
+      }
+    }
+    if (selectedGroup) {
+      fetchGroupCharacters()
+    }
+  }, [selectedGroup])
 
   const startGame = (name) => {
     if (name.trim()) {
       setPlayerName(name)
       setGameStarted(true)
     }
+  }
+
+  const selectGroup = (groupId) => {
+    setSelectedGroup(groupId)
+    setGroupCharacters([])
   }
 
   const selectCharacter = (character) => {
@@ -102,19 +126,43 @@ function App() {
           />
           <button onClick={() => startGame(playerName)}>Start Quest</button>
         </div>
+      ) : !selectedGroup ? (
+        <div className="game-container">
+          <h2>Welcome, {playerName}!</h2>
+          <p>Choose a knowledge path to explore Scripture:</p>
+          <div className="groups-list">
+            {Object.entries(groups).length > 0 ? (
+              Object.entries(groups).map(([groupId, groupData]) => (
+                <button
+                  key={groupId}
+                  className="group-btn"
+                  onClick={() => selectGroup(groupId)}
+                  title={groupData.description}
+                >
+                  <strong>{groupData.name}</strong>
+                  <span>{groupData.description}</span>
+                </button>
+              ))
+            ) : (
+              <p>Loading knowledge paths...</p>
+            )}
+          </div>
+        </div>
       ) : !selectedCharacter ? (
         <div className="game-container">
           <h2>Welcome, {playerName}!</h2>
-          <p>Choose a Biblical character to learn from:</p>
+          <button className="back-btn" onClick={() => setSelectedGroup(null)}>← Choose Different Path</button>
+          <p>Select a teacher from {groups[selectedGroup]?.name}:</p>
           <div className="character-list">
-            {characters.length > 0 ? (
-              characters.map((char) => (
+            {groupCharacters.length > 0 ? (
+              groupCharacters.map((char) => (
                 <button
-                  key={char}
+                  key={char.id}
                   className="character-btn"
-                  onClick={() => selectCharacter(char)}
+                  onClick={() => selectCharacter(char.id)}
                 >
-                  {char.charAt(0).toUpperCase() + char.slice(1)}
+                  <strong>{char.name}</strong>
+                  <span>{char.title}</span>
                 </button>
               ))
             ) : (
@@ -126,7 +174,10 @@ function App() {
         <div className="dialogue-container">
           <div className="dialogue-header">
             <h2>{selectedCharacter.charAt(0).toUpperCase() + selectedCharacter.slice(1)}</h2>
-            <button onClick={() => setSelectedCharacter(null)}>← Back</button>
+            <div className="back-buttons">
+              <button onClick={() => { setSelectedCharacter(null); setGroupCharacters([]); }}>← Back to Characters</button>
+              <button onClick={() => { setSelectedCharacter(null); setSelectedGroup(null); setGroupCharacters([]); }}>← Back to Paths</button>
+            </div>
           </div>
 
           <div className="dialogue-window">
