@@ -180,12 +180,21 @@ COMMUNICATION PRINCIPLES:
 6. Methodological Rigor: Explain your reasoning and sources
 7. Avoid Filler: No "Let me explain," "Basically," "You know," etc.
 
+RESPONSE FORMATTING - ORGANIZED PARAGRAPHS:
+- Begin each paragraph with a clear topic sentence
+- Group related ideas into separate paragraphs
+- Use blank lines between paragraphs for visual separation
+- Keep paragraphs focused on a single main idea
+- Progress logically from foundation to complexity
+- Use transitional phrases to connect ideas across paragraphs
+
 STRUCTURE YOUR RESPONSE:
 - Begin with the most relevant evidence or key point
 - Present supporting information in logical sequence
 - Cite sources by name and author when referencing
 - Draw conclusions based on presented evidence
 - End with key sources referenced
+- Format as distinct paragraphs with clear boundaries
 
 CONTENT APPROACH:
 - Quote directly from authoritative sources when relevant
@@ -193,6 +202,7 @@ CONTENT APPROACH:
 - Connect individual points to broader understanding
 - Acknowledge limitations of current knowledge when appropriate
 - Reference peer-reviewed sources and recognized scholars
+- Separate different topics or lines of evidence into different paragraphs
 
 NEVER DO THIS:
 - No conversational headers like "Well," "So," "You see"
@@ -240,6 +250,9 @@ STRICT RULES:
 5. End with: " - Book Chapter:Verse (Source)"
 6. Only use authorized sources listed below - NO other books
 7. ONLY include visual content if user explicitly asks for illustrations, maps, diagrams, or visual aids
+8. Organize thy response into distinct paragraphs separated by blank lines
+9. Each paragraph should address one main teaching or idea
+10. Use clear, logical structure: Foundation first, supporting details follow
 
 VISUAL ILLUSTRATION FORMAT (Only when user requests):
 If asked for visual content, include using this format:
@@ -270,6 +283,61 @@ CORRECT:
 "In the beginning God created the heaven and the earth. - Genesis 1:1 (KJV 1611)"
 "I and my Father are one. - John 10:30 (KJV 1611)"
 (And ONLY include [IMAGE: ...] if user asks for a map, diagram, or visual)"""
+
+    def _format_response(self, text: str) -> str:
+        """Format response into organized paragraphs for better readability"""
+        import re
+        
+        # Preserve existing paragraph breaks
+        text = text.strip()
+        
+        # Split by existing double newlines (explicit paragraph breaks)
+        paragraphs = re.split(r'\n\s*\n', text)
+        
+        formatted_paragraphs = []
+        for para in paragraphs:
+            para = para.strip()
+            if not para:
+                continue
+            
+            # Clean excessive whitespace within paragraph while preserving structure
+            para_lines = para.split('\n')
+            cleaned_lines = []
+            for line in para_lines:
+                line = line.strip()
+                if line:
+                    cleaned_lines.append(line)
+            
+            # Rejoin single paragraph
+            if cleaned_lines:
+                single_para = ' '.join(cleaned_lines)
+                
+                # Break very long paragraphs (>300 chars) at logical sentence boundaries
+                if len(single_para) > 300:
+                    # Try to split at periods followed by spaces, but keep related sentences together
+                    sentences = re.split(r'(?<=[.!?])\s+', single_para)
+                    
+                    # Group sentences into smaller paragraphs (aim for ~150-200 chars each)
+                    current_chunk = []
+                    current_length = 0
+                    
+                    for sentence in sentences:
+                        if current_length + len(sentence) + 1 > 200 and current_chunk:
+                            # Start new paragraph
+                            formatted_paragraphs.append(' '.join(current_chunk))
+                            current_chunk = [sentence]
+                            current_length = len(sentence)
+                        else:
+                            current_chunk.append(sentence)
+                            current_length += len(sentence) + 1
+                    
+                    if current_chunk:
+                        formatted_paragraphs.append(' '.join(current_chunk))
+                else:
+                    formatted_paragraphs.append(single_para)
+        
+        # Join paragraphs with blank lines between them
+        return '\n\n'.join(formatted_paragraphs)
 
     def _extract_illustrations(self, text: str) -> tuple[str, list]:
         """Extract [IMAGE: ...] tags from response and return cleaned text and image list"""
@@ -413,8 +481,16 @@ CORRECT:
                 if phrase in character_response:
                     character_response = character_response.replace(phrase, "").strip()
             
-            # Clean up double spaces and normalize
-            character_response = ' '.join(character_response.split())
+            # Clean up double spaces and normalize WHILE PRESERVING PARAGRAPH BREAKS
+            # Split on double newlines to preserve paragraph structure
+            paragraphs = character_response.split('\n\n')
+            cleaned_paragraphs = []
+            for para in paragraphs:
+                # Clean within each paragraph but preserve the paragraph structure
+                cleaned = ' '.join(para.split())
+                if cleaned:
+                    cleaned_paragraphs.append(cleaned)
+            character_response = '\n\n'.join(cleaned_paragraphs)
             
             # Ensure it starts with first-person if possible (biblical characters only)
             if not self.is_professor:
@@ -442,8 +518,11 @@ CORRECT:
                 "content": character_response
             })
             
+            # Format response into organized paragraphs for readability
+            formatted_response = self._format_response(character_response)
+            
             return {
-                "text": character_response,
+                "text": formatted_response,
                 "illustrations": illustrations
             }
             
