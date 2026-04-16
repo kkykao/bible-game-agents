@@ -399,7 +399,9 @@ class CharacterAgentFactory:
                     "name": char_data.get("name", char_id),
                     "title": char_data.get("title", ""),
                     "personality": char_data.get("personality", ""),
-                    "avatar": char_data.get("avatar", "👤")
+                    "avatar": char_data.get("avatar", "👤"),
+                    "birth_date": char_data.get("birth_date", ""),
+                    "death_date": char_data.get("death_date", "")
                 })
         
         return {

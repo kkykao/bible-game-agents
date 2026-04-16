@@ -300,6 +300,15 @@ body {
   font-style: normal;
 }
 
+.character-years {
+  font-size: 0.75rem;
+  color: var(--color-brown);
+  border-top: 1px solid rgba(212, 165, 116, 0.3);
+  padding-top: 0.4rem;
+  margin-top: 0.4rem;
+  font-style: italic;
+}
+
 .character-btn:hover {
   background: linear-gradient(135deg, rgba(212, 165, 116, 0.3) 0%, rgba(166, 132, 92, 0.3) 100%);
   border-color: var(--color-gold);
@@ -309,7 +318,8 @@ body {
 
 .character-btn:hover .character-info strong,
 .character-btn:hover .character-title,
-.character-btn:hover .character-profile {
+.character-btn:hover .character-profile,
+.character-btn:hover .character-years {
   color: var(--color-cream);
 }
 

@@ -166,6 +166,9 @@ function App() {
                     <strong>{char.name}</strong>
                     <span className="character-title">{char.title}</span>
                     <span className="character-profile">{char.personality}</span>
+                    {(char.birth_date || char.death_date) && (
+                      <span className="character-years">{char.birth_date} — {char.death_date}</span>
+                    )}
                   </div>
                 </button>
               ))
