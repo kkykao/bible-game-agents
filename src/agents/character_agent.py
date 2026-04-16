@@ -171,7 +171,24 @@ STRICT RULES:
 3. NO modern words: "Absolutely," "Explanation," "Here's," "Actually," "Of course"
 4. Begin with KJV Scripture quote, then draw from authorized sources
 5. End with: " - Book Chapter:Verse (Source)"
-6. Only use authorized sources listed below - NO other books{primary_sources_text}{sources_text}
+6. Only use authorized sources listed below - NO other books
+7. When appropriate, include visual content using: [IMAGE: detailed description of visualization]
+
+VISUAL ILLUSTRATION FORMAT:
+Include images to enhance teaching when relevant, using this format:
+[IMAGE: Detailed description of a map showing ancient Israel with the twelve tribes]
+[IMAGE: Diagram of the Tabernacle layout with the Holy of Holies and brass altar]
+[IMAGE: Timeline of biblical events from Creation through the prophets]
+[IMAGE: Chart showing the genealogy of kings of Israel and Judah]
+
+ILLUSTRATION EXAMPLES:
+"Behold the glory of the Tabernacle:
+[IMAGE: Bird's eye view diagram of the Tabernacle showing the Holy of Holies containing the Ark, the altar of incense, the table of showbread, the lampstand, and the bronze altar in the outer court]
+The Tabernacle was the dwelling place of God among His people. - Exodus 25:8 (KJV 1611)"
+
+"Consider the waters at Creation:
+[IMAGE: Map showing the division of waters under the firmament from waters above, with the Earth at the center surrounded by the cosmic waters, as described in Genesis]
+In the beginning God created the heaven and the earth. - Genesis 1:1 (KJV 1611)"{primary_sources_text}{sources_text}
 
 THY VERSES: {key_verses}
 
@@ -182,8 +199,34 @@ CORRECT:
 "In the beginning God created the heaven and the earth. - Genesis 1:1 (KJV 1611)"
 "I and my Father are one. - John 10:30 (KJV 1611)"""
 
-    def get_dialogue_response(self, player_name: str, player_message: str) -> str:
-        """Get character response to player message using Anthropic Claude API"""
+    def _extract_illustrations(self, text: str) -> tuple[str, list]:
+        """Extract [IMAGE: ...] tags from response and return cleaned text and image list"""
+        import re
+        
+        # Find all [IMAGE: ...] patterns
+        image_pattern = r'\[IMAGE:\s*([^\]]+)\]'
+        illustrations = []
+        
+        matches = list(re.finditer(image_pattern, text))
+        for match in matches:
+            description = match.group(1).strip()
+            if description:
+                illustrations.append({
+                    "description": description,
+                    "type": "illustration"
+                })
+        
+        # Remove all [IMAGE: ...] tags from text
+        cleaned_text = re.sub(image_pattern, '', text).strip()
+        
+        # Clean up any extra whitespace that might result
+        cleaned_text = ' '.join(cleaned_text.split())
+        
+        return cleaned_text, illustrations
+
+    def get_dialogue_response(self, player_name: str, player_message: str) -> dict:
+        """Get character response to player message using Anthropic Claude API
+        Returns dict with 'text' and 'illustrations' keys"""
         
         # Build conversation context
         full_message = f"{player_name}: {player_message}"
@@ -214,6 +257,14 @@ CORRECT:
             print(f"\n[DEBUG] Raw model response: {raw_response[:200]}...")
             
             character_response = raw_response
+            
+            # Extract illustrations BEFORE cleaning text
+            character_response, illustrations = self._extract_illustrations(character_response)
+            
+            print(f"[DEBUG] Extracted {len(illustrations)} illustrations from response")
+            if illustrations:
+                for i, ill in enumerate(illustrations):
+                    print(f"[DEBUG]   Illustration {i+1}: {ill['description'][:80]}...")
             
             # Light cleaning - only remove clear instructional/meta text
             forbidden_starts = [
@@ -254,7 +305,8 @@ CORRECT:
                 # Fallback: return raw response if cleaning removed everything
                 if raw_response:
                     print(f"[DEBUG] Using raw response as fallback")
-                    character_response = raw_response
+                    # Re-extract illustrations from raw response
+                    character_response, illustrations = self._extract_illustrations(raw_response)
             
             # Final cleaning - remove third-person and modern filler phrases
             forbidden_phrases = [
@@ -286,7 +338,10 @@ CORRECT:
             
             # Final check
             if not character_response:
-                return f"Forgive me, {player_name}. I could not generate a proper response. Please try again."
+                return {
+                    "text": f"Forgive me, {player_name}. I could not generate a proper response. Please try again.",
+                    "illustrations": []
+                }
             
             # Store in conversation history
             self.conversation_history.append({
@@ -298,14 +353,20 @@ CORRECT:
                 "content": character_response
             })
             
-            return character_response
+            return {
+                "text": character_response,
+                "illustrations": illustrations
+            }
             
         except Exception as e:
             error_msg = str(e)
             print(f"\n[CLAUDE ERROR FULL] {type(e).__name__}: {error_msg}\n")
             import traceback
             traceback.print_exc()
-            return f"Forgive me, {player_name}. A difficulty hath arisen: {error_msg}"
+            return {
+                "text": f"Forgive me, {player_name}. A difficulty hath arisen: {error_msg}",
+                "illustrations": []
+            }
 
     def reset_conversation(self):
         """Reset conversation history"""

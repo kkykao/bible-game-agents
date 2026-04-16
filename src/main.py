@@ -102,10 +102,12 @@ async def send_dialogue(request: DialogueRequest):
         agent = get_character_agent(character_id)
         
         # Get response from Claude through character agent
-        response_text = agent.get_dialogue_response(request.player_name, request.message)
+        # Returns dict with 'text' and 'illustrations' keys
+        response_data = agent.get_dialogue_response(request.player_name, request.message)
         
         return {
-            "response": response_text,
+            "response": response_data.get("text", ""),
+            "illustrations": response_data.get("illustrations", []),
             "character": character_id,
             "theology_reference": "KJV 1611"
         }

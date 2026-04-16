@@ -93,6 +93,7 @@ function App() {
       const characterMessage = {
         role: 'character',
         content: data.response || 'No response',
+        illustrations: data.illustrations || [],
         character: selectedCharacter,
       }
       setMessages((prev) => [...prev, characterMessage])
@@ -205,6 +206,18 @@ function App() {
                     :
                   </strong>
                   <p>{msg.content}</p>
+                  {msg.illustrations && msg.illustrations.length > 0 && (
+                    <div className="illustrations-section">
+                      {msg.illustrations.map((illustration, idx) => (
+                        <div key={idx} className="illustration-container">
+                          <div className="illustration-label">📊 Illustration:</div>
+                          <div className="illustration-description">
+                            {illustration.description}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               ))
             )}
