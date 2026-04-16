@@ -233,6 +233,9 @@
       "personality": "Reluctant, powerful, mediator",
       "teaching_areas": ["God's law", "liberation", "God's nature", "intercession"],
       "group": "theology",
+      "avatar": "📜",
+      "birth_date": "~1526 BC",
+      "death_date": "~1406 BC",
       "theology": {
         "primary_doctrine": "Law Reveals God's Character",
         "core_beliefs": ["God's law is holy and righteous", "God liberates the oppressed", "Intercession is powerful"],
@@ -484,6 +487,9 @@
       "personality": "Visionary, deeply spiritual, experienced supernatural encounters",
       "teaching_areas": ["prophecy", "divine visions", "God's glory", "revelation", "holiness"],
       "group": "theology",
+      "avatar": "🔮",
+      "birth_date": "~625 BC",
+      "death_date": "~570 BC",
       "theology": {
         "primary_doctrine": "God's Manifest Glory and Restoration",
         "core_beliefs": ["God's glory is central to all reality", "Divine judgment prepares the way for restoration", "God reveals mysteries to those He chooses", "Holiness and divine presence are interconnected"],
