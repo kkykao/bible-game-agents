@@ -31,7 +31,7 @@
     "theology": {
       "name": "Theology & Scripture",
       "description": "Learn biblical theology from ancient figures of faith",
-      "characters": ["god_yhwh", "lucifer", "michael", "gabriel", "fallen_angel", "adam", "job", "nephilim", "samson", "samuel", "saul_king", "queen_sheba", "elijah", "jonah", "isaiah", "jeremiah", "ezekiel", "daniel", "goliath", "ezra", "nehemiah", "esther", "malachi", "paul", "peter", "timothy"]
+      "characters": ["god_yhwh", "lucifer", "michael", "gabriel", "fallen_angel", "enoch", "noah", "abraham", "isaac", "jacob", "joseph", "moses", "joshua", "samson", "david", "solomon", "elijah", "samuel", "saul_king", "queen_sheba", "job", "jonah", "isaiah", "jeremiah", "ezekiel", "daniel", "goliath", "jesus", "ezra", "nehemiah", "esther", "malachi", "john", "luke", "mark", "matthew", "paul", "peter", "timothy", "nephilim", "adam"]
     },
     "archaeology": {
       "name": "Biblical Archaeology",
