@@ -6,8 +6,8 @@ import os
 from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, Session
-from src.agents.character_agent import get_character_agent, get_all_characters
-from src.models import Base
+from agents.character_agent import get_character_agent, get_all_characters
+from models import Base
 
 # Load environment variables
 load_dotenv()

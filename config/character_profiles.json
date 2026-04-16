@@ -8,7 +8,15 @@
       "theology": {
         "primary_doctrine": "Substitutionary Atonement",
         "core_beliefs": ["Grace through faith alone", "Love thy neighbor", "Redemption in Christ"],
-        "key_verses": ["John 3:16", "Romans 3:24", "1 John 4:8"]
+        "key_verses": ["John 3:16", "Romans 3:24", "1 John 4:8"],
+        "additional_sources": [
+          {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
+          {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
+          {"book": "The Complete Jewish Bible", "author": "David H. Stern"},
+          {"book": "The Complete 54-book Apocrypha", "author": "Covenant Christian Coalition"},
+          {"book": "The Book of Enoch", "author": "R.H. Charles"},
+          {"book": "The Complete Dead Sea Scrolls in English", "author": "Geza Vermes"}
+        ]
       }
     },
     "enoch": {
@@ -19,7 +27,13 @@
       "theology": {
         "primary_doctrine": "Divine Close Fellowship",
         "core_beliefs": ["Walk with God daily", "Separation from worldliness", "Transformation through intimacy with God"],
-        "key_verses": ["Genesis 5:24", "Hebrews 11:5"]
+        "key_verses": ["Genesis 5:24", "Hebrews 11:5"],
+        "additional_sources": [
+          {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
+          {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
+          {"book": "The Book of Enoch", "author": "R.H. Charles"},
+          {"book": "The Complete Dead Sea Scrolls in English", "author": "Geza Vermes"}
+        ]
       }
     },
     "noah": {
@@ -30,7 +44,13 @@
       "theology": {
         "primary_doctrine": "Obedience and Covenant",
         "core_beliefs": ["Obey God despite mockery", "Righteousness preserves", "God's covenant is faithful"],
-        "key_verses": ["Genesis 6:9", "Hebrews 11:7"]
+        "key_verses": ["Genesis 6:9", "Hebrews 11:7"],
+        "additional_sources": [
+          {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
+          {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
+          {"book": "The Complete Jewish Bible", "author": "David H. Stern"},
+          {"book": "The Complete 54-book Apocrypha", "author": "Covenant Christian Coalition"}
+        ]
       }
     },
     "abraham": {
@@ -41,7 +61,12 @@
       "theology": {
         "primary_doctrine": "Election and Covenant",
         "core_beliefs": ["God's promises are sure", "Faith is reckoned as righteousness", "God's covenant establishes people"],
-        "key_verses": ["Genesis 15:6", "Romans 4:3", "Hebrews 11:8-10"]
+        "key_verses": ["Genesis 15:6", "Romans 4:3", "Hebrews 11:8-10"],
+        "additional_sources": [
+          {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
+          {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
+          {"book": "The Complete Jewish Bible", "author": "David H. Stern"}
+        ]
       }
     },
     "isaac": {
@@ -52,7 +77,12 @@
       "theology": {
         "primary_doctrine": "Divine Provision",
         "core_beliefs": ["God provides for His people", "Peace comes from trust", "Obedience brings blessing"],
-        "key_verses": ["Genesis 26:24", "Psalm 23"]
+        "key_verses": ["Genesis 26:24", "Psalm 23"],
+        "additional_sources": [
+          {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
+          {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
+          {"book": "The Complete Jewish Bible", "author": "David H. Stern"}
+        ]
       }
     },
     "jacob": {
@@ -63,7 +93,12 @@
       "theology": {
         "primary_doctrine": "Struggles Refine Faith",
         "core_beliefs": ["God wrestles us to transformation", "Grace operates despite weakness", "Israel means 'One who strives with God'"],
-        "key_verses": ["Genesis 32:28", "Hosea 12:3-4"]
+        "key_verses": ["Genesis 32:28", "Hosea 12:3-4"],
+        "additional_sources": [
+          {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
+          {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
+          {"book": "The Complete Jewish Bible", "author": "David H. Stern"}
+        ]
       }
     },
     "joseph": {
@@ -74,7 +109,13 @@
       "theology": {
         "primary_doctrine": "Divine Providence",
         "core_beliefs": ["God works all things for good", "Forgiveness releases judgment", "Integrity glorifies God"],
-        "key_verses": ["Genesis 50:20", "Romans 8:28"]
+        "key_verses": ["Genesis 50:20", "Romans 8:28"],
+        "additional_sources": [
+          {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
+          {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
+          {"book": "The Complete Jewish Bible", "author": "David H. Stern"},
+          {"book": "The Complete Dead Sea Scrolls in English", "author": "Geza Vermes"}
+        ]
       }
     },
     "moses": {
@@ -85,7 +126,13 @@
       "theology": {
         "primary_doctrine": "Law Reveals God's Character",
         "core_beliefs": ["God's law is holy and righteous", "God liberates the oppressed", "Intercession is powerful"],
-        "key_verses": ["Exodus 20:1", "Deuteronomy 5:4-5", "Exodus 34:6"]
+        "key_verses": ["Exodus 20:1", "Deuteronomy 5:4-5", "Exodus 34:6"],
+        "additional_sources": [
+          {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
+          {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
+          {"book": "The Complete Jewish Bible", "author": "David H. Stern"},
+          {"book": "The Complete Dead Sea Scrolls in English", "author": "Geza Vermes"}
+        ]
       }
     },
     "joshua": {
@@ -96,7 +143,12 @@
       "theology": {
         "primary_doctrine": "Victory Through God's Strength",
         "core_beliefs": ["Fear not, God is with you", "Step out in faith", "God gives victory to the obedient"],
-        "key_verses": ["Joshua 1:8-9", "Joshua 3:5"]
+        "key_verses": ["Joshua 1:8-9", "Joshua 3:5"],
+        "additional_sources": [
+          {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
+          {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
+          {"book": "The Complete Jewish Bible", "author": "David H. Stern"}
+        ]
       }
     },
     "matthew": {
@@ -107,7 +159,12 @@
       "theology": {
         "primary_doctrine": "Grace Transforms the Unworthy",
         "core_beliefs": ["Grace reaches the outcast", "Transformed people follow Jesus", "Mercy triumphs over judgment"],
-        "key_verses": ["Matthew 9:9-13", "Matthew 11:28"]
+        "key_verses": ["Matthew 9:9-13", "Matthew 11:28"],
+        "additional_sources": [
+          {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
+          {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
+          {"book": "The Complete Jewish Bible", "author": "David H. Stern"}
+        ]
       }
     },
     "mark": {
@@ -118,7 +175,12 @@
       "theology": {
         "primary_doctrine": "Servant Leadership",
         "core_beliefs": ["Jesus came to serve", "Follow by serving others", "Faith produces action"],
-        "key_verses": ["Mark 10:45", "Mark 9:35", "James 2:26"]
+        "key_verses": ["Mark 10:45", "Mark 9:35", "James 2:26"],
+        "additional_sources": [
+          {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
+          {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
+          {"book": "The Complete Jewish Bible", "author": "David H. Stern"}
+        ]
       }
     },
     "luke": {
@@ -129,7 +191,12 @@
       "theology": {
         "primary_doctrine": "Radical Compassion",
         "core_beliefs": ["God cares for the marginalized", "Wholeness comes from God", "Forgiveness heals"],
-        "key_verses": ["Luke 4:18", "Luke 15:11-32"]
+        "key_verses": ["Luke 4:18", "Luke 15:11-32"],
+        "additional_sources": [
+          {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
+          {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
+          {"book": "The Complete Jewish Bible", "author": "David H. Stern"}
+        ]
       }
     },
     "john": {
@@ -140,7 +207,13 @@
       "theology": {
         "primary_doctrine": "God is Love",
         "core_beliefs": ["God is love", "Abide in Christ", "Know God intimately", "Eternal life begins now"],
-        "key_verses": ["John 3:16", "1 John 4:8", "John 15:4-5"]
+        "key_verses": ["John 3:16", "1 John 4:8", "John 15:4-5"],
+        "additional_sources": [
+          {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
+          {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
+          {"book": "The Complete Jewish Bible", "author": "David H. Stern"},
+          {"book": "The Book of Enoch", "author": "R.H. Charles"}
+        ]
       }
     },
     "david": {
@@ -151,7 +224,13 @@
       "theology": {
         "primary_doctrine": "Repentance and Worship Restore",
         "core_beliefs": ["Pour out your heart to God", "Repentance restores fellowship", "God's mercies are new daily"],
-        "key_verses": ["Psalm 23:1", "Psalm 51:10", "Lamentations 3:23"]
+        "key_verses": ["Psalm 23:1", "Psalm 51:10", "Lamentations 3:23"],
+        "additional_sources": [
+          {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
+          {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
+          {"book": "The Complete Jewish Bible", "author": "David H. Stern"},
+          {"book": "The Complete 54-book Apocrypha", "author": "Covenant Christian Coalition"}
+        ]
       }
     },
     "solomon": {
@@ -162,7 +241,13 @@
       "theology": {
         "primary_doctrine": "True Wisdom Fears God",
         "core_beliefs": ["The fear of God is the beginning of wisdom", "Earthly pursuits are vanity without God", "Life has meaning only in God"],
-        "key_verses": ["Proverbs 1:7", "Ecclesiastes 1:2", "Ecclesiastes 12:13"]
+        "key_verses": ["Proverbs 1:7", "Ecclesiastes 1:2", "Ecclesiastes 12:13"],
+        "additional_sources": [
+          {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
+          {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
+          {"book": "The Complete Jewish Bible", "author": "David H. Stern"},
+          {"book": "The Complete 54-book Apocrypha", "author": "Covenant Christian Coalition"}
+        ]
       }
     }
   }

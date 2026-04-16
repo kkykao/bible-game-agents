@@ -3,7 +3,7 @@ from sqlalchemy import Column, Integer, String, Text, DateTime, Boolean, Foreign
 from sqlalchemy.orm import relationship
 from datetime import datetime
 from enum import Enum
-from src.models import Base
+from . import Base
 
 
 class QuestStatus(str, Enum):

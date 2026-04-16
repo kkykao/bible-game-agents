@@ -2,7 +2,7 @@
 from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 from datetime import datetime
-from src.models import Base
+from . import Base
 
 
 class DialogueHistory(Base):

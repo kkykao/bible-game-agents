@@ -1,7 +1,7 @@
 """Quest management system"""
 import json
 from sqlalchemy.orm import Session
-from src.models import Quest, PlayerQuestProgress, QuestStatus
+from models import Quest, PlayerQuestProgress, QuestStatus
 from datetime import datetime
 
 # Sample quests

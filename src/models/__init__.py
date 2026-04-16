@@ -6,10 +6,10 @@ from sqlalchemy.orm import declarative_base, sessionmaker
 Base = declarative_base()
 
 # Import all models to register them with Base
-from src.models.player import Player
-from src.models.quest import Quest, PlayerQuestProgress, QuestStatus
-from src.models.dialogue import DialogueHistory
-from src.models.game_state import GameState, Achievement
+from .player import Player
+from .quest import Quest, PlayerQuestProgress, QuestStatus
+from .dialogue import DialogueHistory
+from .game_state import GameState, Achievement
 
 __all__ = [
     "Base",

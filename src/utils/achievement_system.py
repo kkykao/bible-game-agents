@@ -1,6 +1,6 @@
 """Achievement system for tracking player accomplishments"""
 from sqlalchemy.orm import Session
-from src.models import Achievement, Player
+from models import Achievement, Player
 from datetime import datetime
 
 # Sample achievements
