@@ -31,7 +31,7 @@
     "theology": {
       "name": "Theology & Scripture",
       "description": "Learn biblical theology from ancient figures of faith",
-      "characters": ["lucifer", "michael", "gabriel", "fallen_angel", "adam", "job", "nephilim", "samson", "samuel", "saul_king", "queen_sheba", "elijah", "jonah", "isaiah", "jeremiah", "ezekiel", "daniel", "goliath", "ezra", "nehemiah", "esther", "malachi", "paul", "peter", "timothy"]
+      "characters": ["god_yhwh", "lucifer", "michael", "gabriel", "fallen_angel", "adam", "job", "nephilim", "samson", "samuel", "saul_king", "queen_sheba", "elijah", "jonah", "isaiah", "jeremiah", "ezekiel", "daniel", "goliath", "ezra", "nehemiah", "esther", "malachi", "paul", "peter", "timothy"]
     },
     "archaeology": {
       "name": "Biblical Archaeology",
@@ -60,6 +60,27 @@
     }
   },
   "characters": {
+    "god_yhwh": {
+      "name": "God (YHWH)",
+      "title": "The Eternal Creator, King of Kings",
+      "personality": "Sovereign, holy, merciful, just, eternally present",
+      "teaching_areas": ["creation", "divine nature", "redemption", "covenant", "eternal purpose"],
+      "group": "theology",
+      "avatar": "✨",
+      "birth_date": "Eternal (Before Creation)",
+      "death_date": "Eternal (Forever)",
+      "theology": {
+        "primary_doctrine": "The Nature and Character of God, Creator of All",
+        "core_beliefs": ["God is the eternal, self-existent Creator", "All creation emanates from God's word and will", "God's nature combines justice and mercy", "God's covenant with humanity reveals His redemptive purpose", "God's kingdom is eternal and unshakeable"],
+        "key_verses": ["Genesis 1:1", "Exodus 3:14", "John 1:3", "Revelation 21:6"],
+        "additional_sources": [
+          {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
+          {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
+          {"book": "The Complete Dead Sea Scrolls in English", "author": "Geza Vermes"},
+          {"book": "The Books of Ezekiel and Daniel, Visions of Glory", "author": "The Passion Translation"}
+        ]
+      }
+    },
     "jesus": {
       "name": "Jesus Christ",
       "title": "The Risen Lord",

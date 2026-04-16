@@ -161,8 +161,12 @@ function App() {
                   className="character-btn"
                   onClick={() => selectCharacter(char.id)}
                 >
-                  <strong>{char.name}</strong>
-                  <span>{char.title}</span>
+                  <div className="character-avatar">{char.avatar}</div>
+                  <div className="character-info">
+                    <strong>{char.name}</strong>
+                    <span className="character-title">{char.title}</span>
+                    <span className="character-profile">{char.personality}</span>
+                  </div>
                 </button>
               ))
             ) : (
