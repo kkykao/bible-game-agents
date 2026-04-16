@@ -79,7 +79,7 @@ ANTHROPIC_MODEL = get_available_model()
 print(f"[STARTUP] Using ANTHROPIC_MODEL = {ANTHROPIC_MODEL}", file=sys.stderr)
 
 
-def call_api_with_fallback(client, system_prompt, messages, max_tokens=400, temperature=0.4):
+def call_api_with_fallback(client, system_prompt, messages, max_tokens=1500, temperature=0.4):
     """Call Anthropic API, trying multiple models if needed"""
     
     # First try the pre-validated model
@@ -249,7 +249,8 @@ CORRECT:
             messages.append({"role": "user", "content": player_message})
             
             # Call Anthropic API with fallback model handling
-            response = call_api_with_fallback(client, system_prompt, messages)
+            # Use higher token limit for complete theological responses
+            response = call_api_with_fallback(client, system_prompt, messages, max_tokens=1500)
             
             # Extract response content
             raw_response = response.content[0].text.strip()
@@ -289,15 +290,17 @@ CORRECT:
             
             character_response = ' '.join(cleaned_lines).strip()
             
-            # Stop at any stop sequences (including multiple Q&A patterns)
-            stop_sequences = [
-                "###", "Player:", "User:", "System:", "Assistant:", 
-                "\n\nPlayer", "Question:", "Q:", "A:",
-                "Another question", "If thou asketh", "Should thou ask"
+            # Stop at dialogue markers (but NOT markdown ### headers or Q&A in content)
+            # Only stop at these if they appear at line boundaries (meta-markers)
+            dialogue_markers = [
+                "\n\nPlayer:", "\n\nUser:", "\n\nSystem:", "\n\nAssistant:",
+                "\nPlayer:", "\nUser:", "\nSystem:", "\nAssistant:",
+                "Another question?", "If thou asketh", "Should thou ask",
+                "\n---END---"
             ]
-            for stop in stop_sequences:
-                if stop in character_response:
-                    character_response = character_response.split(stop)[0].strip()
+            for marker in dialogue_markers:
+                if marker in character_response:
+                    character_response = character_response.split(marker)[0].strip()
             
             print(f"[DEBUG] Cleaned response: {character_response[:200]}...")
             
