@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, Session
 from agents.character_agent import get_character_agent, get_all_characters, get_character_groups, get_characters_in_group, get_reference_sources
-from models import Base
+from models import Base, SavedConversation
 
 # Load environment variables
 load_dotenv()
@@ -55,6 +55,30 @@ class DialogueResponse(BaseModel):
     response: str
     character: str
     theology_reference: str = None
+
+class SaveConversationRequest(BaseModel):
+    player_name: str
+    character_id: str
+    messages: list  # Array of message objects
+    conversation_title: str = None  # Optional custom title
+
+class ConversationSummary(BaseModel):
+    id: int
+    player_name: str
+    character_id: str
+    conversation_title: str = None
+    created_at: str
+    updated_at: str
+    message_count: int
+
+class LoadedConversation(BaseModel):
+    id: int
+    player_name: str
+    character_id: str
+    conversation_title: str = None
+    messages: list
+    created_at: str
+    updated_at: str
 
 @app.get("/health")
 async def health_check():
@@ -115,6 +139,113 @@ async def send_dialogue(request: DialogueRequest):
     except Exception as e:
         print(f"Error in dialogue endpoint: {e}")
         raise HTTPException(status_code=500, detail=f"Error getting response: {str(e)}")
+
+@app.post("/api/conversations/save")
+async def save_conversation(request: SaveConversationRequest, db: Session = Depends(get_db)):
+    """Save a conversation to database"""
+    try:
+        # Create new conversation record
+        conversation = SavedConversation(
+            player_name=request.player_name,
+            character_id=request.character_id.lower(),
+            conversation_title=request.conversation_title or f"Chat with {request.character_id.capitalize()}"
+        )
+        
+        # Serialize and save messages
+        conversation.set_messages(request.messages)
+        
+        # Save to database
+        db.add(conversation)
+        db.commit()
+        db.refresh(conversation)
+        
+        return {
+            "success": True,
+            "conversation_id": conversation.id,
+            "message": f"Conversation saved successfully"
+        }
+    
+    except Exception as e:
+        db.rollback()
+        print(f"Error saving conversation: {e}")
+        raise HTTPException(status_code=500, detail=f"Error saving conversation: {str(e)}")
+
+@app.get("/api/conversations")
+async def get_conversations(player_name: str, db: Session = Depends(get_db)):
+    """Get all saved conversations for a player"""
+    try:
+        conversations = db.query(SavedConversation).filter(
+            SavedConversation.player_name == player_name
+        ).order_by(SavedConversation.updated_at.desc()).all()
+        
+        result = []
+        for conv in conversations:
+            messages = conv.get_messages()
+            result.append({
+                "id": conv.id,
+                "player_name": conv.player_name,
+                "character_id": conv.character_id,
+                "conversation_title": conv.conversation_title,
+                "created_at": conv.created_at.isoformat(),
+                "updated_at": conv.updated_at.isoformat(),
+                "message_count": len(messages)
+            })
+        
+        return {"conversations": result}
+    
+    except Exception as e:
+        print(f"Error fetching conversations: {e}")
+        raise HTTPException(status_code=500, detail=f"Error fetching conversations: {str(e)}")
+
+@app.get("/api/conversations/{conversation_id}")
+async def get_conversation(conversation_id: int, db: Session = Depends(get_db)):
+    """Load a specific saved conversation"""
+    try:
+        conversation = db.query(SavedConversation).filter(
+            SavedConversation.id == conversation_id
+        ).first()
+        
+        if not conversation:
+            raise HTTPException(status_code=404, detail="Conversation not found")
+        
+        return {
+            "id": conversation.id,
+            "player_name": conversation.player_name,
+            "character_id": conversation.character_id,
+            "conversation_title": conversation.conversation_title,
+            "messages": conversation.get_messages(),
+            "created_at": conversation.created_at.isoformat(),
+            "updated_at": conversation.updated_at.isoformat()
+        }
+    
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"Error loading conversation: {e}")
+        raise HTTPException(status_code=500, detail=f"Error loading conversation: {str(e)}")
+
+@app.delete("/api/conversations/{conversation_id}")
+async def delete_conversation(conversation_id: int, db: Session = Depends(get_db)):
+    """Delete a saved conversation"""
+    try:
+        conversation = db.query(SavedConversation).filter(
+            SavedConversation.id == conversation_id
+        ).first()
+        
+        if not conversation:
+            raise HTTPException(status_code=404, detail="Conversation not found")
+        
+        db.delete(conversation)
+        db.commit()
+        
+        return {"success": True, "message": "Conversation deleted successfully"}
+    
+    except HTTPException:
+        raise
+    except Exception as e:
+        db.rollback()
+        print(f"Error deleting conversation: {e}")
+        raise HTTPException(status_code=500, detail=f"Error deleting conversation: {str(e)}")
 
 if __name__ == "__main__":
     import uvicorn

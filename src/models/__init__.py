@@ -10,6 +10,7 @@ from .player import Player
 from .quest import Quest, PlayerQuestProgress, QuestStatus
 from .dialogue import DialogueHistory
 from .game_state import GameState, Achievement
+from .conversation import SavedConversation
 
 __all__ = [
     "Base",
@@ -20,4 +21,5 @@ __all__ = [
     "DialogueHistory",
     "GameState",
     "Achievement",
+    "SavedConversation",
 ]

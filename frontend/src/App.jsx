@@ -13,6 +13,10 @@ function App() {
   const [loading, setLoading] = useState(false)
   const [editingIndex, setEditingIndex] = useState(null)
   const [editingContent, setEditingContent] = useState('')
+  const [savedConversations, setSavedConversations] = useState([])
+  const [showSavedConversations, setShowSavedConversations] = useState(false)
+  const [customTitle, setCustomTitle] = useState('')
+  const [showSaveDialog, setShowSaveDialog] = useState(false)
 
   // Fetch character groups from backend
   useEffect(() => {
@@ -171,6 +175,85 @@ function App() {
     URL.revokeObjectURL(url)
   }
 
+  const saveConversation = async () => {
+    if (!messages.length) {
+      alert('There are no messages to save')
+      return
+    }
+
+    try {
+      const response = await fetch('http://localhost:8000/api/conversations/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          player_name: playerName,
+          character_id: selectedCharacter,
+          messages: messages,
+          conversation_title: customTitle || `Chat with ${selectedCharacter.charAt(0).toUpperCase() + selectedCharacter.slice(1)}`
+        }),
+      })
+
+      const data = await response.json()
+      if (data.success) {
+        alert('Conversation saved successfully!')
+        setShowSaveDialog(false)
+        setCustomTitle('')
+        await loadUserConversations()
+      } else {
+        alert('Failed to save conversation')
+      }
+    } catch (error) {
+      console.error('Error saving conversation:', error)
+      alert('Error saving conversation')
+    }
+  }
+
+  const loadUserConversations = async () => {
+    try {
+      const response = await fetch(`http://localhost:8000/api/conversations?player_name=${encodeURIComponent(playerName)}`)
+      const data = await response.json()
+      setSavedConversations(data.conversations || [])
+    } catch (error) {
+      console.error('Error loading conversations:', error)
+    }
+  }
+
+  const loadConversation = async (conversationId) => {
+    try {
+      const response = await fetch(`http://localhost:8000/api/conversations/${conversationId}`)
+      const data = await response.json()
+      
+      // Load the conversation into the current dialogue
+      setMessages(data.messages)
+      setShowSavedConversations(false)
+      window.scrollTo(0, document.querySelector('.dialogue-window').offsetTop)
+    } catch (error) {
+      console.error('Error loading conversation:', error)
+      alert('Error loading conversation')
+    }
+  }
+
+  const deleteConversation = async (conversationId) => {
+    if (!window.confirm('Are you sure you want to delete this conversation?')) return
+
+    try {
+      const response = await fetch(`http://localhost:8000/api/conversations/${conversationId}`, {
+        method: 'DELETE'
+      })
+
+      const data = await response.json()
+      if (data.success) {
+        await loadUserConversations()
+        alert('Conversation deleted successfully')
+      } else {
+        alert('Failed to delete conversation')
+      }
+    } catch (error) {
+      console.error('Error deleting conversation:', error)
+      alert('Error deleting conversation')
+    }
+  }
+
   const sendMessage = async (e) => {
     e.preventDefault()
     if (!inputMessage.trim() || !selectedCharacter) return
@@ -292,10 +375,18 @@ function App() {
             <h2>{selectedCharacter.charAt(0).toUpperCase() + selectedCharacter.slice(1)}</h2>
             <div className="header-actions">
               {messages.length > 0 && (
-                <button onClick={forwardConversation} className="btn-forward">
-                  📤 Export Conversation
-                </button>
+                <>
+                  <button onClick={() => setShowSaveDialog(true)} className="btn-forward">
+                    💾 Save Conversation
+                  </button>
+                  <button onClick={forwardConversation} className="btn-forward">
+                    📤 Export Conversation
+                  </button>
+                </>
               )}
+              <button onClick={() => { loadUserConversations(); setShowSavedConversations(true); }} className="btn-forward">
+                📋 Saved Conversations
+              </button>
               <div className="back-buttons">
                 <button onClick={() => { setSelectedCharacter(null); setGroupCharacters([]); }}>← Back to Characters</button>
                 <button onClick={() => { setSelectedCharacter(null); setSelectedGroup(null); setGroupCharacters([]); }}>← Back to Paths</button>
@@ -411,6 +502,59 @@ function App() {
               Send
             </button>
           </form>
+
+          {showSaveDialog && (
+            <div className="modal-overlay" onClick={() => setShowSaveDialog(false)}>
+              <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                <h3>Save Conversation</h3>
+                <input
+                  type="text"
+                  placeholder="Give this conversation a title (optional)..."
+                  value={customTitle}
+                  onChange={(e) => setCustomTitle(e.target.value)}
+                  className="modal-input"
+                />
+                <div className="modal-buttons">
+                  <button onClick={saveConversation} className="btn-modal-save">Save</button>
+                  <button onClick={() => { setShowSaveDialog(false); setCustomTitle(''); }} className="btn-modal-cancel">Cancel</button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {showSavedConversations && (
+            <div className="modal-overlay" onClick={() => setShowSavedConversations(false)}>
+              <div className="modal-content modal-large" onClick={(e) => e.stopPropagation()}>
+                <h3>Saved Conversations</h3>
+                {savedConversations.length === 0 ? (
+                  <p className="no-conversations">No saved conversations yet</p>
+                ) : (
+                  <div className="conversations-list">
+                    {savedConversations.map((conv) => (
+                      <div key={conv.id} className="conversation-item">
+                        <div className="conversation-info">
+                          <strong>{conv.conversation_title}</strong>
+                          <span className="conversation-meta">
+                            {conv.character_id.charAt(0).toUpperCase() + conv.character_id.slice(1)} • {conv.message_count} messages
+                          </span>
+                          <span className="conversation-date">
+                            {new Date(conv.updated_at).toLocaleDateString()} {new Date(conv.updated_at).toLocaleTimeString()}
+                          </span>
+                        </div>
+                        <div className="conversation-actions">
+                          <button onClick={() => loadConversation(conv.id)} className="btn-load">Load</button>
+                          <button onClick={() => deleteConversation(conv.id)} className="btn-delete">Delete</button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                <div className="modal-buttons">
+                  <button onClick={() => setShowSavedConversations(false)} className="btn-modal-close">Close</button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       )}
 
