@@ -180,29 +180,28 @@ COMMUNICATION PRINCIPLES:
 6. Methodological Rigor: Explain your reasoning and sources
 7. Avoid Filler: No "Let me explain," "Basically," "You know," etc.
 
-RESPONSE FORMATTING - ORGANIZED PARAGRAPHS:
-- Begin each paragraph with a clear topic sentence
-- Group related ideas into separate paragraphs
-- Use blank lines between paragraphs for visual separation
-- Keep paragraphs focused on a single main idea
-- Progress logically from foundation to complexity
-- Use transitional phrases to connect ideas across paragraphs
+RESPONSE FORMATTING - ORGANIZED PARAGRAPHS WITH CITATIONS:
+CRITICAL: You MUST use blank lines between each paragraph. This is not optional.
+- Each paragraph focuses on ONE main idea or teaching point
+- Begin each paragraph with a topic sentence that summarizes the main point
+- After stating your point, provide supporting evidence or scripture
+- Always cite sources: "According to [Source Name] by [Author]" or "- [Book Chapter:Verse]"
+- Use separate paragraphs for: (1) Main point, (2) Evidence/support, (3) Explanation, (4) Conclusion
+- Use blank lines (press Enter twice) to separate paragraphs visually
+- Limit paragraphs to 3-5 sentences maximum for readability
+- When citing scripture, format as: "- Genesis 1:1 (KJV 1611)" on a new line
+- When citing references, format as: "- Source Title by Author Name" on a new line
 
-STRUCTURE YOUR RESPONSE:
-- Begin with the most relevant evidence or key point
-- Present supporting information in logical sequence
-- Cite sources by name and author when referencing
-- Draw conclusions based on presented evidence
-- End with key sources referenced
-- Format as distinct paragraphs with clear boundaries
+PARAGRAPH STRUCTURE EXAMPLE:
+Main point with topic sentence here.
 
-CONTENT APPROACH:
-- Quote directly from authoritative sources when relevant
-- Explain the significance of evidence systematically
-- Connect individual points to broader understanding
-- Acknowledge limitations of current knowledge when appropriate
-- Reference peer-reviewed sources and recognized scholars
-- Separate different topics or lines of evidence into different paragraphs
+Supporting evidence and scripture reference.
+- Genesis 1:1 (KJV 1611)
+
+Explanation of significance and what it means.
+
+Conclusion connecting back to main point.
+- Supporting Reference by Author
 
 NEVER DO THIS:
 - No conversational headers like "Well," "So," "You see"
@@ -247,12 +246,26 @@ STRICT RULES:
 2. Address player as "thee" or "thou"
 3. NO modern words: "Absolutely," "Explanation," "Here's," "Actually," "Of course"
 4. Begin with KJV Scripture quote, then draw from authorized sources
-5. End with: " - Book Chapter:Verse (Source)"
+5. End verses with: " - Book Chapter:Verse (KJV 1611)"
 6. Only use authorized sources listed below - NO other books
 7. ONLY include visual content if user explicitly asks for illustrations, maps, diagrams, or visual aids
-8. Organize thy response into distinct paragraphs separated by blank lines
-9. Each paragraph should address one main teaching or idea
-10. Use clear, logical structure: Foundation first, supporting details follow
+8. Organize thy response into distinct paragraphs separated by blank lines - THIS IS CRITICAL
+9. Each paragraph should address ONE main teaching point or idea
+10. Use clear, logical structure: Foundation/Scripture first, supporting details follow
+11. Between paragraphs, include blank lines (press Enter twice)
+12. Limit each paragraph to 3-4 sentences maximum for readability
+13. Format scripture citations on their own lines: "- Genesis 1:1 (KJV 1611)"
+
+PARAGRAPH STRUCTURE FOR BIBLICAL TEACHING:
+Opening teaching point with main concept.
+
+Supporting scripture verse(s):
+- Psalm 23:1 (KJV 1611)
+- Proverbs 3:5-6 (KJV 1611)
+
+Explanation of significance and deeper meaning.
+
+Application or final teaching on this point.
 
 VISUAL ILLUSTRATION FORMAT (Only when user requests):
 If asked for visual content, include using this format:
@@ -285,59 +298,101 @@ CORRECT:
 (And ONLY include [IMAGE: ...] if user asks for a map, diagram, or visual)"""
 
     def _format_response(self, text: str) -> str:
-        """Format response into organized paragraphs for better readability"""
+        """Format response into organized, logically coherent paragraphs with proper citations"""
         import re
         
-        # Preserve existing paragraph breaks
         text = text.strip()
         
-        # Split by existing double newlines (explicit paragraph breaks)
-        paragraphs = re.split(r'\n\s*\n', text)
+        # First pass: identify and protect citation lines (lines starting with - or containing verse/source references)
+        lines = text.split('\n')
+        is_citation = []
+        for line in lines:
+            stripped = line.strip()
+            # Citation lines: start with -, contain ":", contain "KJV", or match source patterns
+            is_cit = (stripped.startswith('-') or 
+                     '(' in stripped and ')' in stripped and ':' in stripped or
+                     'KJV' in stripped or
+                     'by ' in stripped and len(stripped) < 100)
+            is_citation.append(is_cit)
         
-        formatted_paragraphs = []
-        for para in paragraphs:
-            para = para.strip()
-            if not para:
+        # Second pass: group lines into logical paragraphs
+        paragraphs = []
+        current_para = []
+        
+        for i, line in enumerate(lines):
+            stripped = line.strip()
+            
+            if not stripped:
+                # Empty line - potential paragraph break
+                if current_para:
+                    paragraphs.append(current_para)
+                    current_para = []
+            elif is_citation[i]:
+                # Citation line - include with current paragraph if it exists, otherwise make new para
+                if current_para:
+                    current_para.append(stripped)
+                else:
+                    current_para.append(stripped)
+            else:
+                # Regular content line
+                current_para.append(stripped)
+        
+        if current_para:
+            paragraphs.append(current_para)
+        
+        # Third pass: process each paragraph for logic and structure
+        formatted_paras = []
+        
+        for para_lines in paragraphs:
+            if not para_lines:
                 continue
             
-            # Clean excessive whitespace within paragraph while preserving structure
-            para_lines = para.split('\n')
-            cleaned_lines = []
-            for line in para_lines:
-                line = line.strip()
-                if line:
-                    cleaned_lines.append(line)
+            # Join lines within a paragraph
+            para_text = ' '.join(para_lines)
             
-            # Rejoin single paragraph
-            if cleaned_lines:
-                single_para = ' '.join(cleaned_lines)
+            # Check if this paragraph contains citations
+            has_citations = any(is_citation[lines.index(line)] if line in lines else False 
+                              for line in para_lines)
+            
+            # Split sentences but keep track of citations
+            sentences = re.split(r'(?<=[.!?])\s+(?=[A-Z])', para_text)
+            
+            if len(sentences) > 4 and not has_citations:
+                # Long paragraph without citations - try to split intelligently
+                # Split after evidence/explanation transitions
+                split_phrases = ['Therefore', 'Thus', 'Consequently', 'However', 'Moreover', 
+                               'Furthermore', 'Additionally', 'In summary', 'This means',
+                               'This demonstrates', 'This reveals', 'This shows']
                 
-                # Break very long paragraphs (>300 chars) at logical sentence boundaries
-                if len(single_para) > 300:
-                    # Try to split at periods followed by spaces, but keep related sentences together
-                    sentences = re.split(r'(?<=[.!?])\s+', single_para)
+                current_chunk = []
+                for sentence in sentences:
+                    sentence = sentence.strip()
+                    if not sentence:
+                        continue
                     
-                    # Group sentences into smaller paragraphs (aim for ~150-200 chars each)
-                    current_chunk = []
-                    current_length = 0
+                    # Check if sentence starts with a split phrase
+                    should_split = any(sentence.startswith(phrase) for phrase in split_phrases)
                     
-                    for sentence in sentences:
-                        if current_length + len(sentence) + 1 > 200 and current_chunk:
-                            # Start new paragraph
-                            formatted_paragraphs.append(' '.join(current_chunk))
-                            current_chunk = [sentence]
-                            current_length = len(sentence)
-                        else:
-                            current_chunk.append(sentence)
-                            current_length += len(sentence) + 1
-                    
-                    if current_chunk:
-                        formatted_paragraphs.append(' '.join(current_chunk))
-                else:
-                    formatted_paragraphs.append(single_para)
+                    if should_split and current_chunk:
+                        formatted_paras.append(' '.join(current_chunk))
+                        current_chunk = [sentence]
+                    else:
+                        current_chunk.append(sentence)
+                
+                if current_chunk:
+                    formatted_paras.append(' '.join(current_chunk))
+            else:
+                # Keep as single paragraph (either short, or has citations to preserve structure)
+                formatted_paras.append(para_text)
         
-        # Join paragraphs with blank lines between them
-        return '\n\n'.join(formatted_paragraphs)
+        # Fourth pass: ensure proper spacing with blank lines between paragraphs
+        final_text = '\n\n'.join(p.strip() for p in formatted_paras if p.strip())
+        
+        # Clean up excessive whitespace while preserving paragraph structure
+        final_text = re.sub(r'\n\n\n+', '\n\n', final_text)
+        final_text = re.sub(r'\n(?=\S)', '\n', final_text)
+        
+        return final_text.strip()
 
     def _extract_illustrations(self, text: str) -> tuple[str, list]:
         """Extract [IMAGE: ...] tags from response and return cleaned text and image list"""
@@ -417,19 +472,22 @@ CORRECT:
                     "In conclusion", "To summarize", "In summary"
                 ]
                 
-                # Remove lines that start with forbidden phrases (case insensitive)
+                # Remove lines that start with forbidden phrases but PRESERVE paragraph structure
                 lines = character_response.split('\n')
                 cleaned_lines = []
                 for line in lines:
-                    line = line.strip()
-                    if not line:
+                    stripped = line.strip()
+                    if not stripped:
+                        # Preserve empty lines (paragraph breaks)
+                        cleaned_lines.append('')
                         continue
                     # Skip lines starting with forbidden phrases (with word boundary check)
-                    if any(line.lower().startswith(forbidden.lower()) for forbidden in forbidden_starts):
+                    if any(stripped.lower().startswith(forbidden.lower()) for forbidden in forbidden_starts):
                         continue
-                    cleaned_lines.append(line)
+                    cleaned_lines.append(stripped)
                 
-                character_response = ' '.join(cleaned_lines).strip()
+                # Join with newlines to preserve paragraph structure
+                character_response = '\n'.join(cleaned_lines).strip()
             
             # Stop at dialogue markers (but NOT markdown ### headers or Q&A in content)
             # Only stop at these if they appear at line boundaries (meta-markers)
