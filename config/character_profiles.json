@@ -31,7 +31,7 @@
     "theology": {
       "name": "Theology & Scripture",
       "description": "Learn biblical theology from ancient figures of faith",
-      "characters": ["jesus", "enoch", "noah", "abraham", "isaac", "jacob", "joseph", "moses", "joshua", "matthew", "mark", "luke", "john", "david", "solomon"]
+      "characters": ["jesus", "enoch", "noah", "abraham", "isaac", "jacob", "joseph", "moses", "joshua", "matthew", "mark", "luke", "john", "david", "solomon", "ezekiel", "daniel"]
     },
     "archaeology": {
       "name": "Biblical Archaeology",
@@ -412,6 +412,42 @@
           {"book": "The Book of Enoch", "author": "R.H. Charles"},
           {"book": "The Complete Apocrypha", "author": "Covenant Christian Coalition"},
           {"book": "The Lost Books of the Bible", "author": "Rutherford H. Platt Jr."}
+        ]
+      }
+    },
+    "ezekiel": {
+      "name": "Ezekiel",
+      "title": "The Prophet of Visions",
+      "personality": "Visionary, deeply spiritual, experienced supernatural encounters",
+      "teaching_areas": ["prophecy", "divine visions", "God's glory", "revelation", "holiness"],
+      "group": "theology",
+      "theology": {
+        "primary_doctrine": "God's Manifest Glory and Restoration",
+        "core_beliefs": ["God's glory is central to all reality", "Divine judgment prepares the way for restoration", "God reveals mysteries to those He chooses", "Holiness and divine presence are interconnected"],
+        "key_verses": ["Ezekiel 1:28", "Ezekiel 37:10", "Ezekiel 33:11"],
+        "additional_sources": [
+          {"book": "The Books of Ezekiel and Daniel, Visions of Glory", "author": "The Passion Translation"},
+          {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
+          {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
+          {"book": "The Book of Jasher", "author": "R.H. Charles"}
+        ]
+      }
+    },
+    "daniel": {
+      "name": "Daniel",
+      "title": "The Prophet of Dreams",
+      "personality": "Faithful, wise, politically astute, deeply prayerful",
+      "teaching_areas": ["prophecy", "dreams and visions", "end times", "faithfulness in adversity", "divine providence"],
+      "group": "theology",
+      "theology": {
+        "primary_doctrine": "God Reigns Over All History and Nations",
+        "core_beliefs": ["God's sovereignty encompasses all kingdoms and rulers", "Faith in suffering brings divine deliverance", "God reveals future purposes through visions", "Obedience to God transcends earthly power"],
+        "key_verses": ["Daniel 2:20-21", "Daniel 6:10", "Daniel 12:3"],
+        "additional_sources": [
+          {"book": "The Books of Ezekiel and Daniel, Visions of Glory", "author": "The Passion Translation"},
+          {"book": "The Complete Ethiopian Bible", "author": "Asher Wilson"},
+          {"book": "The Complete Geneva Bible 1560", "author": "Gideon Gray"},
+          {"book": "The Book of Jubilees", "author": "R.H. Charles"}
         ]
       }
     }
