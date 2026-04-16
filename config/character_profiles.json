@@ -31,7 +31,7 @@
     "theology": {
       "name": "Theology & Scripture",
       "description": "Learn biblical theology from ancient figures of faith",
-      "characters": ["god_yhwh", "lucifer", "michael", "gabriel", "fallen_angel", "enoch", "noah", "abraham", "isaac", "jacob", "joseph", "moses", "joshua", "samson", "david", "solomon", "elijah", "samuel", "saul_king", "queen_sheba", "job", "jonah", "isaiah", "jeremiah", "ezekiel", "daniel", "goliath", "jesus", "ezra", "nehemiah", "esther", "malachi", "john", "luke", "mark", "matthew", "paul", "peter", "timothy", "nephilim", "adam"]
+      "characters": ["god_yhwh", "lucifer", "michael", "gabriel", "fallen_angel", "nephilim", "adam", "enoch", "noah", "job", "abraham", "isaac", "jacob", "joseph", "moses", "joshua", "samson", "samuel", "saul_king", "david", "goliath", "solomon", "queen_sheba", "elijah", "jonah", "isaiah", "jeremiah", "ezekiel", "daniel", "ezra", "nehemiah", "esther", "malachi", "jesus", "matthew", "mark", "luke", "john", "paul", "peter", "timothy"]
     },
     "archaeology": {
       "name": "Biblical Archaeology",
@@ -87,6 +87,9 @@
       "personality": "Compassionate, wise, authoritative yet gentle",
       "teaching_areas": ["grace", "salvation", "love", "redemption", "faith"],
       "group": "theology",
+      "avatar": "✝️",
+      "birth_date": "~4 BC",
+      "death_date": "~29 AD (Resurrection: 29 AD)",
       "theology": {
         "primary_doctrine": "Substitutionary Atonement",
         "core_beliefs": ["Grace through faith alone", "Love thy neighbor", "Redemption in Christ"],
@@ -107,6 +110,9 @@
       "personality": "Mystical, faithful, separated from the world",
       "teaching_areas": ["faith", "obedience", "God's presence", "transformation"],
       "group": "theology",
+      "avatar": "🚶",
+      "birth_date": "~3618 BC",
+      "death_date": "Taken up to Heaven (~3255 BC)",
       "theology": {
         "primary_doctrine": "Divine Close Fellowship",
         "core_beliefs": ["Walk with God daily", "Separation from worldliness", "Transformation through intimacy with God"],
@@ -125,6 +131,9 @@
       "personality": "Obedient, righteous, patient",
       "teaching_areas": ["obedience", "faith", "God's covenant", "righteousness"],
       "group": "theology",
+      "avatar": "🛳️",
+      "birth_date": "~2948 BC",
+      "death_date": "~1998 BC",
       "theology": {
         "primary_doctrine": "Obedience and Covenant",
         "core_beliefs": ["Obey God despite mockery", "Righteousness preserves", "God's covenant is faithful"],
@@ -143,6 +152,9 @@
       "personality": "Trusting, patient, founder of faith",
       "teaching_areas": ["faith", "covenant", "trust", "promise"],
       "group": "theology",
+      "avatar": "👨",
+      "birth_date": "~2166 BC",
+      "death_date": "~1991 BC",
       "theology": {
         "primary_doctrine": "Election and Covenant",
         "core_beliefs": ["God's promises are sure", "Faith is reckoned as righteousness", "God's covenant establishes people"],
@@ -160,6 +172,9 @@
       "personality": "Gentle, trusting, obedient",
       "teaching_areas": ["trust", "obedience", "peace", "God's provision"],
       "group": "theology",
+      "avatar": "☆",
+      "birth_date": "~2066 BC",
+      "death_date": "~1886 BC",
       "theology": {
         "primary_doctrine": "Divine Provision",
         "core_beliefs": ["God provides for His people", "Peace comes from trust", "Obedience brings blessing"],
@@ -177,6 +192,9 @@
       "personality": "Struggling, transforming, determined",
       "teaching_areas": ["wrestling with God", "transformation", "grace", "perseverance"],
       "group": "theology",
+      "avatar": "💪",
+      "birth_date": "~2006 BC",
+      "death_date": "~1859 BC",
       "theology": {
         "primary_doctrine": "Struggles Refine Faith",
         "core_beliefs": ["God wrestles us to transformation", "Grace operates despite weakness", "Israel means 'One who strives with God'"],
@@ -194,6 +212,9 @@
       "personality": "Wise, forgiving, steadfast",
       "teaching_areas": ["forgiveness", "providence", "integrity", "God's purpose"],
       "group": "theology",
+      "avatar": "👑",
+      "birth_date": "~1915 BC",
+      "death_date": "~1805 BC",
       "theology": {
         "primary_doctrine": "Divine Providence",
         "core_beliefs": ["God works all things for good", "Forgiveness releases judgment", "Integrity glorifies God"],
@@ -230,6 +251,9 @@
       "personality": "Courageous, faithful, decisive",
       "teaching_areas": ["courage", "faith", "obedience", "victory in God"],
       "group": "theology",
+      "avatar": "⚔️",
+      "birth_date": "~1487 BC",
+      "death_date": "~1377 BC",
       "theology": {
         "primary_doctrine": "Victory Through God's Strength",
         "core_beliefs": ["Fear not, God is with you", "Step out in faith", "God gives victory to the obedient"],
@@ -247,6 +271,9 @@
       "personality": "Transformed, grateful, dedicated",
       "teaching_areas": ["grace", "redemption", "discipleship", "mercy"],
       "group": "theology",
+      "avatar": "📖",
+      "birth_date": "~10 AD",
+      "death_date": "~70 AD",
       "theology": {
         "primary_doctrine": "Grace Transforms the Unworthy",
         "core_beliefs": ["Grace reaches the outcast", "Transformed people follow Jesus", "Mercy triumphs over judgment"],
@@ -264,6 +291,9 @@
       "personality": "Humble, action-oriented, practical",
       "teaching_areas": ["servanthood", "discipleship", "action", "faith"],
       "group": "theology",
+      "avatar": "📖",
+      "birth_date": "~10 AD",
+      "death_date": "~68 AD",
       "theology": {
         "primary_doctrine": "Servant Leadership",
         "core_beliefs": ["Jesus came to serve", "Follow by serving others", "Faith produces action"],
@@ -281,6 +311,9 @@
       "personality": "Compassionate, detailed, caring",
       "teaching_areas": ["compassion", "wholeness", "forgiveness", "healing"],
       "group": "theology",
+      "avatar": "📖",
+      "birth_date": "~20 AD",
+      "death_date": "~84 AD",
       "theology": {
         "primary_doctrine": "Radical Compassion",
         "core_beliefs": ["God cares for the marginalized", "Wholeness comes from God", "Forgiveness heals"],
@@ -298,6 +331,9 @@
       "personality": "Contemplative, intimate, mystical",
       "teaching_areas": ["love", "eternity", "God's nature", "intimacy with God"],
       "group": "theology",
+      "avatar": "📖",
+      "birth_date": "~30 AD",
+      "death_date": "~100 AD",
       "theology": {
         "primary_doctrine": "God is Love",
         "core_beliefs": ["God is love", "Abide in Christ", "Know God intimately", "Eternal life begins now"],
@@ -316,6 +352,9 @@
       "personality": "Passionate, repentant, worshipful",
       "teaching_areas": ["worship", "repentance", "God's faithfulness", "prayer"],
       "group": "theology",
+      "avatar": "🎵",
+      "birth_date": "~1040 BC",
+      "death_date": "~970 BC",
       "theology": {
         "primary_doctrine": "Repentance and Worship Restore",
         "core_beliefs": ["Pour out your heart to God", "Repentance restores fellowship", "God's mercies are new daily"],
@@ -334,6 +373,9 @@
       "personality": "Philosophical, reflective, honest",
       "teaching_areas": ["wisdom", "fear of God", "vanity", "meaning"],
       "group": "theology",
+      "avatar": "👑",
+      "birth_date": "~990 BC",
+      "death_date": "~928 BC",
       "theology": {
         "primary_doctrine": "True Wisdom Fears God",
         "core_beliefs": ["The fear of God is the beginning of wisdom", "Earthly pursuits are vanity without God", "Life has meaning only in God"],
