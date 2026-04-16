@@ -180,28 +180,31 @@ COMMUNICATION PRINCIPLES:
 6. Methodological Rigor: Explain your reasoning and sources
 7. Avoid Filler: No "Let me explain," "Basically," "You know," etc.
 
-RESPONSE FORMATTING - ORGANIZED PARAGRAPHS WITH CITATIONS:
-CRITICAL: You MUST use blank lines between each paragraph. This is not optional.
-- Each paragraph focuses on ONE main idea or teaching point
-- Begin each paragraph with a topic sentence that summarizes the main point
-- After stating your point, provide supporting evidence or scripture
-- Always cite sources: "According to [Source Name] by [Author]" or "- [Book Chapter:Verse]"
-- Use separate paragraphs for: (1) Main point, (2) Evidence/support, (3) Explanation, (4) Conclusion
-- Use blank lines (press Enter twice) to separate paragraphs visually
-- Limit paragraphs to 3-5 sentences maximum for readability
-- When citing scripture, format as: "- Genesis 1:1 (KJV 1611)" on a new line
-- When citing references, format as: "- Source Title by Author Name" on a new line
+RESPONSE FORMATTING - MANDATORY PARAGRAPH STRUCTURE WITH BLANK LINES:
+CRITICAL: Every response MUST be organized into separate paragraphs with blank lines between them.
+This is not optional. Blank lines are essential for readability.
 
-PARAGRAPH STRUCTURE EXAMPLE:
-Main point with topic sentence here.
+PARAGRAPH RULES:
+1. Write each main idea in its own paragraph
+2. ALWAYS use blank lines between paragraphs (press Enter/Return twice)
+3. Each paragraph = 2-4 sentences maximum
+4. Start each paragraph with a clear topic sentence
+5. Citations go on separate lines starting with "-"
+6. Never write more than 4 sentences in a row without a blank line and new paragraph
 
-Supporting evidence and scripture reference.
-- Genesis 1:1 (KJV 1611)
+EXACT FORMAT YOU MUST USE:
+Topic sentence introducing the first main point.
+Supporting detail or evidence for this point.
 
-Explanation of significance and what it means.
+- Source Name by Author (or Bible verse)
 
-Conclusion connecting back to main point.
-- Supporting Reference by Author
+Second main idea explained concisely.
+How this relates to first point.
+
+- Supporting Citation or Verse
+
+This is how EVERY response must look - with visible blank lines separating paragraph blocks.
+Follow this structure religiously. Do not write long blocks of text without paragraph breaks.
 
 NEVER DO THIS:
 - No conversational headers like "Well," "So," "You see"
@@ -249,23 +252,23 @@ STRICT RULES:
 5. End verses with: " - Book Chapter:Verse (KJV 1611)"
 6. Only use authorized sources listed below - NO other books
 7. ONLY include visual content if user explicitly asks for illustrations, maps, diagrams, or visual aids
-8. Organize thy response into distinct paragraphs separated by blank lines - THIS IS CRITICAL
-9. Each paragraph should address ONE main teaching point or idea
-10. Use clear, logical structure: Foundation/Scripture first, supporting details follow
-11. Between paragraphs, include blank lines (press Enter twice)
-12. Limit each paragraph to 3-4 sentences maximum for readability
-13. Format scripture citations on their own lines: "- Genesis 1:1 (KJV 1611)"
+8. Organize thy response into MANDATORY distinct paragraphs with blank lines between them
+9. Each paragraph addresses ONE main teaching point only - no more than 3-4 sentences
+10. CRITICAL FORMAT: Use blank lines (press Enter twice) between every paragraph - this is required
+11. Format scripture citations on their own lines: "- Genesis 1:1 (KJV 1611)"
+12. Never write more than 3 consecutive sentences without a blank line and new paragraph
 
-PARAGRAPH STRUCTURE FOR BIBLICAL TEACHING:
-Opening teaching point with main concept.
+MANDATORY PARAGRAPH STRUCTURE FOR BIBLICAL TEACHING:
+Opening teaching point with main concept explained.
 
 Supporting scripture verse(s):
-- Psalm 23:1 (KJV 1611)
-- Proverbs 3:5-6 (KJV 1611)
+- Genesis 1:1 (KJV 1611)
+- Psalm 119:105 (KJV 1611)
 
-Explanation of significance and deeper meaning.
+Explanation of what this means for thy understanding.
 
-Application or final teaching on this point.
+Application of this truth to thy life.
+- Additional supporting source reference
 
 VISUAL ILLUSTRATION FORMAT (Only when user requests):
 If asked for visual content, include using this format:
@@ -298,99 +301,130 @@ CORRECT:
 (And ONLY include [IMAGE: ...] if user asks for a map, diagram, or visual)"""
 
     def _format_response(self, text: str) -> str:
-        """Format response into organized, logically coherent paragraphs with proper citations"""
+        """Format response into logically organized paragraphs with proper citations
+        
+        This function enforces paragraph structure with blank lines between paragraphs.
+        It detects natural paragraph boundaries based on content and structure.
+        """
         import re
         
         text = text.strip()
+        if not text:
+            return text
         
-        # First pass: identify and protect citation lines (lines starting with - or containing verse/source references)
-        lines = text.split('\n')
-        is_citation = []
-        for line in lines:
-            stripped = line.strip()
-            # Citation lines: start with -, contain ":", contain "KJV", or match source patterns
-            is_cit = (stripped.startswith('-') or 
-                     '(' in stripped and ')' in stripped and ':' in stripped or
-                     'KJV' in stripped or
-                     'by ' in stripped and len(stripped) < 100)
-            is_citation.append(is_cit)
+        # First: Detect existing explicit paragraph breaks (double newlines)
+        explicit_paragraphs = text.split('\n\n')
         
-        # Second pass: group lines into logical paragraphs
-        paragraphs = []
-        current_para = []
+        result_paragraphs = []
         
-        for i, line in enumerate(lines):
-            stripped = line.strip()
-            
-            if not stripped:
-                # Empty line - potential paragraph break
-                if current_para:
-                    paragraphs.append(current_para)
-                    current_para = []
-            elif is_citation[i]:
-                # Citation line - include with current paragraph if it exists, otherwise make new para
-                if current_para:
-                    current_para.append(stripped)
-                else:
-                    current_para.append(stripped)
-            else:
-                # Regular content line
-                current_para.append(stripped)
-        
-        if current_para:
-            paragraphs.append(current_para)
-        
-        # Third pass: process each paragraph for logic and structure
-        formatted_paras = []
-        
-        for para_lines in paragraphs:
-            if not para_lines:
+        for explicit_para in explicit_paragraphs:
+            if not explicit_para.strip():
                 continue
             
-            # Join lines within a paragraph
-            para_text = ' '.join(para_lines)
+            # Within each explicitly marked paragraph, look for natural breaks
+            # Split into lines and analyze structure
+            lines = explicit_para.split('\n')
             
-            # Check if this paragraph contains citations
-            has_citations = any(is_citation[lines.index(line)] if line in lines else False 
-                              for line in para_lines)
+            # Group lines into logical chunks
+            chunks = []
+            current_chunk = []
             
-            # Split sentences but keep track of citations
-            sentences = re.split(r'(?<=[.!?])\s+(?=[A-Z])', para_text)
-            
-            if len(sentences) > 4 and not has_citations:
-                # Long paragraph without citations - try to split intelligently
-                # Split after evidence/explanation transitions
-                split_phrases = ['Therefore', 'Thus', 'Consequently', 'However', 'Moreover', 
-                               'Furthermore', 'Additionally', 'In summary', 'This means',
-                               'This demonstrates', 'This reveals', 'This shows']
+            for line in lines:
+                stripped = line.strip()
                 
-                current_chunk = []
-                for sentence in sentences:
-                    sentence = sentence.strip()
-                    if not sentence:
-                        continue
-                    
-                    # Check if sentence starts with a split phrase
-                    should_split = any(sentence.startswith(phrase) for phrase in split_phrases)
-                    
-                    if should_split and current_chunk:
-                        formatted_paras.append(' '.join(current_chunk))
-                        current_chunk = [sentence]
+                if not stripped:
+                    # Empty line indicates chunk boundary
+                    if current_chunk:
+                        chunks.append(current_chunk)
+                        current_chunk = []
+                    continue
+                
+                # Check if line is a citation (starts with -, contains verse format, etc)
+                is_citation = (stripped.startswith('-') or 
+                              re.match(r'^[A-Z][a-z]+ \d+:\d+', stripped) or
+                              ('by ' in stripped and len(stripped) < 100))
+                
+                if is_citation:
+                    # Add citation to current chunk
+                    current_chunk.append(stripped)
+                else:
+                    # Regular content - split long lines into sentences
+                    if len(stripped) > 150:
+                        # This line is long - try to split it into sentences
+                        sentences = re.split(r'(?<=[.!?])\s+(?=[A-Z])', stripped)
+                        for i, sent in enumerate(sentences):
+                            current_chunk.append(sent.strip())
+                            
+                            # Check if we should break after this sentence
+                            # Break if: followed by evidence marker, or at logical transitions
+                            if i < len(sentences) - 1:
+                                next_sent = sentences[i + 1] if i + 1 < len(sentences) else ''
+                                transition_words = ['However', 'Therefore', 'Thus', 'Moreover', 'Furthermore',
+                                                   'Additionally', 'Consequently', 'This means', 'This shows']
+                                if any(next_sent.startswith(word) for word in transition_words):
+                                    if current_chunk:
+                                        chunks.append(current_chunk)
+                                        current_chunk = []
                     else:
-                        current_chunk.append(sentence)
+                        current_chunk.append(stripped)
+                    
+                    # Limit chunk size - 4 sentences per paragraph max
+                    if len(current_chunk) >= 4:
+                        chunks.append(current_chunk)
+                        current_chunk = []
+            
+            if current_chunk:
+                chunks.append(current_chunk)
+            
+            # Now process chunks into formatted paragraphs
+            for chunk in chunks:
+                if not chunk:
+                    continue
                 
-                if current_chunk:
-                    formatted_paras.append(' '.join(current_chunk))
-            else:
-                # Keep as single paragraph (either short, or has citations to preserve structure)
-                formatted_paras.append(para_text)
+                # Separate regular content from citations
+                content_lines = []
+                citation_lines = []
+                
+                for line in chunk:
+                    is_citation = (line.startswith('-') or 
+                                  re.match(r'^[A-Z][a-z]+ \d+:\d+', line) or
+                                  ('by ' in line and len(line) < 100))
+                    
+                    if is_citation:
+                        citation_lines.append(line)
+                    else:
+                        content_lines.append(line)
+                
+                # Build paragraph: content first, then citations
+                para_text = ''
+                if content_lines:
+                    para_text = ' '.join(content_lines)
+                
+                if citation_lines:
+                    if para_text:
+                        para_text += '\n' + '\n'.join(citation_lines)
+                    else:
+                        para_text = '\n'.join(citation_lines)
+                
+                if para_text.strip():
+                    result_paragraphs.append(para_text)
         
-        # Fourth pass: ensure proper spacing with blank lines between paragraphs
-        final_text = '\n\n'.join(p.strip() for p in formatted_paras if p.strip())
+        # Join paragraphs with double newlines (blank lines between paragraphs)
+        final_text = '\n\n'.join(p.strip() for p in result_paragraphs if p.strip())
         
-        # Clean up excessive whitespace while preserving paragraph structure
+        # Ensure proper spacing
         final_text = re.sub(r'\n\n\n+', '\n\n', final_text)
-        final_text = re.sub(r'\n(?=\S)', '\n', final_text)
+        
+        # Make sure we have at least one paragraph break if response is longer than 200 chars
+        if len(final_text) > 200 and '\n\n' not in final_text:
+            # Force at least one paragraph break at sentence boundary
+            sentences = re.split(r'(?<=[.!?])\s+(?=[A-Z])', final_text)
+            if len(sentences) > 2:
+                # Join first half vs second half
+                mid_point = len(sentences) // 2
+                first_half = ' '.join(sentences[:mid_point])
+                second_half = ' '.join(sentences[mid_point:])
+                final_text = first_half + '\n\n' + second_half
         
         return final_text.strip()
 
