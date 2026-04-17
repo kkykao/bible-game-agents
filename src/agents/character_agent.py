@@ -180,31 +180,30 @@ COMMUNICATION PRINCIPLES:
 6. Methodological Rigor: Explain your reasoning and sources
 7. Avoid Filler: No "Let me explain," "Basically," "You know," etc.
 
-RESPONSE FORMATTING - MANDATORY PARAGRAPH STRUCTURE WITH BLANK LINES:
-CRITICAL: Every response MUST be organized into separate paragraphs with blank lines between them.
-This is not optional. Blank lines are essential for readability.
+RESPONSE FORMATTING - USE EXPLICIT PARAGRAPH BREAKS IN YOUR OUTPUT:
+CRITICAL INSTRUCTION: Use the sequence [PARA] to mark paragraph breaks in your response.
+This will be converted to visual paragraph breaks for readability.
 
-PARAGRAPH RULES:
-1. Write each main idea in its own paragraph
-2. ALWAYS use blank lines between paragraphs (press Enter/Return twice)
-3. Each paragraph = 2-4 sentences maximum
-4. Start each paragraph with a clear topic sentence
-5. Citations go on separate lines starting with "-"
-6. Never write more than 4 sentences in a row without a blank line and new paragraph
+YOUR FORMAT MUST BE:
+First paragraph with main idea and 2-3 sentences.[PARA]
+Supporting evidence or scripture reference.[PARA]
+- Genesis 1:1 (KJV 1611)[PARA]
+Explanation of meaning and significance.[PARA]
+Conclusion or application of this teaching.
 
-EXACT FORMAT YOU MUST USE:
-Topic sentence introducing the first main point.
-Supporting detail or evidence for this point.
+EXAMPLE RESPONSE YOU SHOULD PRODUCE:
+The creation account reveals God's sovereign power and design.[PARA]
+Scripture states clearly in the opening of Genesis.[PARA]
+- Genesis 1:1 (KJV 1611)[PARA]
+This declares that God alone created heaven and earth by His word and will.[PARA]
+Understanding creation establishes the foundation for all truth.
 
-- Source Name by Author (or Bible verse)
-
-Second main idea explained concisely.
-How this relates to first point.
-
-- Supporting Citation or Verse
-
-This is how EVERY response must look - with visible blank lines separating paragraph blocks.
-Follow this structure religiously. Do not write long blocks of text without paragraph breaks.
+STRICT RULES:
+- Use [PARA] between every major thought or idea
+- Each visible paragraph should have 1-3 sentences maximum
+- Include citations on their own lines with [PARA] before and after
+- Never write more than 3 sentences in a row without [PARA]
+- [PARA] will be converted to visual spacing for readability
 
 NEVER DO THIS:
 - No conversational headers like "Well," "So," "You see"
@@ -252,23 +251,31 @@ STRICT RULES:
 5. End verses with: " - Book Chapter:Verse (KJV 1611)"
 6. Only use authorized sources listed below - NO other books
 7. ONLY include visual content if user explicitly asks for illustrations, maps, diagrams, or visual aids
-8. Organize thy response into MANDATORY distinct paragraphs with blank lines between them
-9. Each paragraph addresses ONE main teaching point only - no more than 3-4 sentences
-10. CRITICAL FORMAT: Use blank lines (press Enter twice) between every paragraph - this is required
-11. Format scripture citations on their own lines: "- Genesis 1:1 (KJV 1611)"
-12. Never write more than 3 consecutive sentences without a blank line and new paragraph
+8. Use [PARA] markers to separate all major thoughts and ideas
+9. Each visible paragraph should have 1-3 sentences maximum
+10. Citations must be on their own lines with [PARA] before and after
+11. Never write more than 3 sentences in a row without [PARA]
+12. [PARA] will be converted to visual spacing for readability
 
-MANDATORY PARAGRAPH STRUCTURE FOR BIBLICAL TEACHING:
-Opening teaching point with main concept explained.
+RESPONSE FORMATTING - USE EXPLICIT [PARA] PARAGRAPH BREAKS IN YOUR OUTPUT:
+CRITICAL INSTRUCTION: Use the sequence [PARA] to mark paragraph breaks in your response.
+This will be converted to visual paragraph breaks for readability.
 
-Supporting scripture verse(s):
-- Genesis 1:1 (KJV 1611)
-- Psalm 119:105 (KJV 1611)
-
-Explanation of what this means for thy understanding.
-
-Application of this truth to thy life.
+YOUR FORMAT MUST BE:
+Opening teaching point with main concept explained.[PARA]
+Supporting scripture verse(s):[PARA]
+- Genesis 1:1 (KJV 1611)[PARA]
+- Psalm 119:105 (KJV 1611)[PARA]
+Explanation of what this means for thy understanding.[PARA]
+Application of this truth to thy life.[PARA]
 - Additional supporting source reference
+
+EXAMPLE BIBLICAL RESPONSE YOU SHOULD PRODUCE:
+Behold, the Lord God created the heaven and the earth, declaring His sovereign power and dominion.[PARA]
+In the beginning, the Scriptures reveal the foundation of all creation.[PARA]
+- Genesis 1:1 (KJV 1611)[PARA]
+This truth establishes that all things exist by the will and word of God, and none other.[PARA]
+Therefore, understanding creation is the key to understanding God's divine purpose.
 
 VISUAL ILLUSTRATION FORMAT (Only when user requests):
 If asked for visual content, include using this format:
@@ -301,132 +308,77 @@ CORRECT:
 (And ONLY include [IMAGE: ...] if user asks for a map, diagram, or visual)"""
 
     def _format_response(self, text: str) -> str:
-        """Format response into logically organized paragraphs with proper citations
-        
-        This function enforces paragraph structure with blank lines between paragraphs.
-        It detects natural paragraph boundaries based on content and structure.
-        """
+        """Convert formatted response markers into readable paragraphs"""
         import re
         
         text = text.strip()
         if not text:
             return text
         
-        # First: Detect existing explicit paragraph breaks (double newlines)
-        explicit_paragraphs = text.split('\n\n')
+        # Replace [PARA] markers with double newlines for visual paragraph breaks
+        text = text.replace('[PARA]', '\n\n')
         
-        result_paragraphs = []
+        # Clean up excessive spacing
+        text = re.sub(r'\n\n\n+', '\n\n', text)
         
-        for explicit_para in explicit_paragraphs:
-            if not explicit_para.strip():
-                continue
+        # If response doesn't have paragraph markers, try to add intelligent breaks
+        if '\n\n' not in text and len(text) > 250:
+            # Split at sentence boundaries and create paragraphs
+            sentences = re.split(r'(?<=[.!?])\s+(?=[A-Z])', text)
             
-            # Within each explicitly marked paragraph, look for natural breaks
-            # Split into lines and analyze structure
-            lines = explicit_para.split('\n')
+            formatted_parts = []
+            current_section = []
             
-            # Group lines into logical chunks
-            chunks = []
-            current_chunk = []
-            
-            for line in lines:
-                stripped = line.strip()
-                
-                if not stripped:
-                    # Empty line indicates chunk boundary
-                    if current_chunk:
-                        chunks.append(current_chunk)
-                        current_chunk = []
+            for i, sent in enumerate(sentences):
+                sent = sent.strip()
+                if not sent:
                     continue
                 
-                # Check if line is a citation (starts with -, contains verse format, etc)
-                is_citation = (stripped.startswith('-') or 
-                              re.match(r'^[A-Z][a-z]+ \d+:\d+', stripped) or
-                              ('by ' in stripped and len(stripped) < 100))
+                current_section.append(sent)
                 
-                if is_citation:
-                    # Add citation to current chunk
-                    current_chunk.append(stripped)
-                else:
-                    # Regular content - split long lines into sentences
-                    if len(stripped) > 150:
-                        # This line is long - try to split it into sentences
-                        sentences = re.split(r'(?<=[.!?])\s+(?=[A-Z])', stripped)
-                        for i, sent in enumerate(sentences):
-                            current_chunk.append(sent.strip())
-                            
-                            # Check if we should break after this sentence
-                            # Break if: followed by evidence marker, or at logical transitions
-                            if i < len(sentences) - 1:
-                                next_sent = sentences[i + 1] if i + 1 < len(sentences) else ''
-                                transition_words = ['However', 'Therefore', 'Thus', 'Moreover', 'Furthermore',
-                                                   'Additionally', 'Consequently', 'This means', 'This shows']
-                                if any(next_sent.startswith(word) for word in transition_words):
-                                    if current_chunk:
-                                        chunks.append(current_chunk)
-                                        current_chunk = []
-                    else:
-                        current_chunk.append(stripped)
-                    
-                    # Limit chunk size - 4 sentences per paragraph max
-                    if len(current_chunk) >= 4:
-                        chunks.append(current_chunk)
-                        current_chunk = []
+                # Create new paragraph after every 2-3 sentences or at logical breaks
+                transition_words = ['Therefore', 'Thus', 'However', 'Moreover', 'Furthermore', 
+                                   'Additionally', 'Consequently', 'This means', 'But', 'Yet']
+                
+                should_break = (len(current_section) >= 2 and i < len(sentences) - 1)
+                
+                if i < len(sentences) - 1:
+                    next_sent = sentences[i + 1] if i + 1 < len(sentences) else ''
+                    starts_with_transition = any(next_sent.strip().startswith(word) for word in transition_words)
+                    if starts_with_transition:
+                        should_break = True
+                
+                if should_break:
+                    formatted_parts.append(' '.join(current_section))
+                    current_section = []
             
-            if current_chunk:
-                chunks.append(current_chunk)
+            if current_section:
+                formatted_parts.append(' '.join(current_section))
             
-            # Now process chunks into formatted paragraphs
-            for chunk in chunks:
-                if not chunk:
-                    continue
-                
-                # Separate regular content from citations
-                content_lines = []
-                citation_lines = []
-                
-                for line in chunk:
-                    is_citation = (line.startswith('-') or 
-                                  re.match(r'^[A-Z][a-z]+ \d+:\d+', line) or
-                                  ('by ' in line and len(line) < 100))
-                    
-                    if is_citation:
-                        citation_lines.append(line)
-                    else:
-                        content_lines.append(line)
-                
-                # Build paragraph: content first, then citations
-                para_text = ''
-                if content_lines:
-                    para_text = ' '.join(content_lines)
-                
-                if citation_lines:
-                    if para_text:
-                        para_text += '\n' + '\n'.join(citation_lines)
-                    else:
-                        para_text = '\n'.join(citation_lines)
-                
-                if para_text.strip():
-                    result_paragraphs.append(para_text)
+            text = '\n\n'.join(formatted_parts)
         
-        # Join paragraphs with double newlines (blank lines between paragraphs)
-        final_text = '\n\n'.join(p.strip() for p in result_paragraphs if p.strip())
+        # Ensure proper spacing around citation lines
+        lines = text.split('\n')
+        formatted_lines = []
         
-        # Ensure proper spacing
-        final_text = re.sub(r'\n\n\n+', '\n\n', final_text)
+        for i, line in enumerate(lines):
+            formatted_lines.append(line)
+            
+            # Add spacing after citation lines if not already spaced
+            if line.strip().startswith('-') and i < len(lines) - 1:
+                next_line = lines[i + 1] if i + 1 < len(lines) else ''
+                if next_line.strip() and not next_line.startswith('\n'):
+                    # Ensure blank line after citations
+                    if i + 1 < len(lines):
+                        formatted_lines.append('')
         
-        # Make sure we have at least one paragraph break if response is longer than 200 chars
-        if len(final_text) > 200 and '\n\n' not in final_text:
-            # Force at least one paragraph break at sentence boundary
-            sentences = re.split(r'(?<=[.!?])\s+(?=[A-Z])', final_text)
-            if len(sentences) > 2:
-                # Join first half vs second half
-                mid_point = len(sentences) // 2
-                first_half = ' '.join(sentences[:mid_point])
-                second_half = ' '.join(sentences[mid_point:])
-                final_text = first_half + '\n\n' + second_half
+        text = '\n'.join(formatted_lines)
         
-        return final_text.strip()
+        # Final cleanup
+        text = re.sub(r'\n\n\n+', '\n\n', text)
+        text = re.sub(r'\n\s*\n\s*\n', '\n\n', text)
+        
+        return text.strip()
 
     def _extract_illustrations(self, text: str) -> tuple[str, list]:
         """Extract [IMAGE: ...] tags from response and return cleaned text and image list"""
