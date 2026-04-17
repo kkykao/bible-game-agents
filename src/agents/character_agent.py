@@ -423,6 +423,34 @@ CORRECT:
             # Get system prompt and build messages
             system_prompt = self.get_system_prompt()
             
+            # Integrate knowledge base if available
+            try:
+                from agents.knowledge_base import get_knowledge_base
+                kb = get_knowledge_base()
+                
+                # Determine knowledge collection type based on character
+                collection_type = "academic" if self.is_professor else "biblical"
+                
+                # Search knowledge base for relevant passages
+                knowledge_results = kb.search_knowledge(
+                    query=player_message,
+                    collection_type=collection_type,
+                    n_results=3
+                )
+                
+                # Inject knowledge context into system prompt if results found
+                if knowledge_results:
+                    knowledge_context = "\n\n[KNOWLEDGE BASE CONTEXT]\nYou have access to authoritative sources. When relevant, cite from these:\n"
+                    for i, result in enumerate(knowledge_results, 1):
+                        knowledge_context += f"\nSource {i}: {result['citation']}\n{result['text']}\n"
+                    knowledge_context += "\n[END KNOWLEDGE BASE]\n"
+                    system_prompt += knowledge_context
+                    print(f"[KB] Injected {len(knowledge_results)} relevant passages for context", flush=True)
+            except ImportError:
+                print("[KB] Knowledge base not available, proceeding without knowledge injection", flush=True)
+            except Exception as e:
+                print(f"[KB] Warning: Failed to retrieve knowledge: {e}", flush=True)
+            
             # Build conversation history for context
             messages = []
             for msg in self.conversation_history:
