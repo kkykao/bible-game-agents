@@ -249,4 +249,22 @@ async def delete_conversation(conversation_id: int, db: Session = Depends(get_db
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    import socket
+    from uvicorn.server import Server
+    
+    # Configure socket options for port reuse on Windows
+    class ReuseAddrServer(Server):
+        def _create_socket(self):
+            sock = super()._create_socket()
+            # Enable SO_REUSEADDR to avoid "Address already in use" errors
+            sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+            if hasattr(socket, 'SO_REUSEPORT'):
+                try:
+                    sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEPORT, 1)
+                except (OSError, AttributeError):
+                    pass  # Not supported on all platforms
+            return sock
+    
+    config = uvicorn.Config(app, host="0.0.0.0", port=8000, log_level="info")
+    server = ReuseAddrServer(config)
+    server.run()
