@@ -10,7 +10,6 @@ from pathlib import Path
 import PyPDF2
 from sentence_transformers import SentenceTransformer
 import chromadb
-from chromadb.config import Settings
 
 
 class PDFKnowledgeBase:
@@ -26,15 +25,29 @@ class PDFKnowledgeBase:
         
         print(f"[KB] Initializing ChromaDB at {self.chroma_dir}", flush=True)
         
-        # Use ChromaDB - simple, local, no API keys needed
-        self.chroma_client = chromadb.Client(
-            Settings(
-                chroma_db_impl="duckdb",
-                persist_directory=str(self.chroma_dir),
-                anonymized_telemetry=False,
-                allow_reset=True
+        # Use ChromaDB with new API (0.4.x+)
+        try:
+            # Try new API first
+            import chromadb
+            self.chroma_client = chromadb.PersistentClient(
+                path=str(self.chroma_dir)
             )
-        )
+            print("[KB] Using ChromaDB persistent client", flush=True)
+        except Exception as e:
+            print(f"[KB] Warning: Failed with new API, trying settings-based approach: {e}", flush=True)
+            try:
+                # Fallback for older ChromaDB versions
+                from chromadb.config import Settings
+                self.chroma_client = chromadb.Client(
+                    Settings(
+                        chroma_db_impl="duckdb+parquet",
+                        persist_directory=str(self.chroma_dir),
+                        anonymized_telemetry=False
+                    )
+                )
+            except Exception as e2:
+                print(f"[KB] Error: Could not initialize ChromaDB: {e2}", flush=True)
+                raise
         
         # Initialize embedding model (local, no API calls)
         print("[KB] Loading embedding model (all-MiniLM-L6-v2)...", flush=True)
